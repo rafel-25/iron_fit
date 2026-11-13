@@ -1,0 +1,508 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRON FIT | Fitness Club</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+  
+<ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="login.html">LOGIN</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#nutrition">Nutrition</a></li>
+    <li><a href="#bmi">BMI</a></li>
+    <li><a href="#calories">Calories</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="register.html">JOIN</a></li>
+</ul>
+<li><a href="login.html">Dashboard</a></li>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>BUILD YOUR<br><span>BEST VERSION.</span></h1>
+
+            <p>
+                Push your limits. Build your strength.
+                Transform your body and your mindset.
+            </p>
+
+            <a href="#programs" class="main-btn">
+                START TRAINING
+            </a>
+        </div>
+    </section>
+
+   
+<!-- WORKOUT PROGRAMS -->
+<section class="programs" id="programs">
+
+    <div class="section-title">
+        <span>WHAT WE OFFER</span>
+        <h2>CHOOSE YOUR <span>WORKOUT</span></h2>
+        <p>Train harder. Get stronger. Become better.</p>
+    </div>
+
+    <div class="program-container">
+
+        <div class="program-card">
+            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=700" alt="Bodybuilding">
+            <div class="card-content">
+                <span>01 / MUSCLE</span>
+                <h3>BODYBUILDING</h3>
+                <p>Build muscle mass and develop your physique.</p>
+                <a href="#bmi">EXPLORE PROGRAM →</a>
+            </div>
+        </div>
+
+        <div class="program-card">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=700" alt="Fitness">
+            <div class="card-content">
+                <span>02 / FITNESS</span>
+                <h3>FAT BURNING</h3>
+                <p>Burn calories and improve your body composition.</p>
+                <a href="#bmi">EXPLORE PROGRAM →</a>
+            </div>
+        </div>
+
+        <div class="program-card">
+            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=700" alt="Strength">
+            <div class="card-content">
+                <span>03 / POWER</span>
+                <h3>STRENGTH</h3>
+                <p>Increase your power and physical performance.</p>
+                <a href="#bmi">EXPLORE PROGRAM →</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- BMI CALCULATOR -->
+<section class="bmi-section" id="bmi">
+
+    <div class="section-title">
+        <span>KNOW YOUR BODY</span>
+        <h2>BMI <span>CALCULATOR</span></h2>
+        <p>Calculate your Body Mass Index.</p>
+    </div>
+
+    <div class="bmi-box">
+
+        <div class="bmi-form">
+            <label>Your Weight (KG)</label>
+            <input type="number" id="weight" placeholder="Example: 80">
+
+            <label>Your Height (CM)</label>
+            <input type="number" id="height" placeholder="Example: 180">
+
+            <button onclick="calculateBMI()">CALCULATE BMI</button>
+
+            <div id="bmi-result"></div>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- PREMIUM DASHBOARD -->
+<section class="dashboard" id="dashboard">
+
+    <div class="dash-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="dash-sidebar">
+
+            <h2 class="dash-logo">IRON<span>FIT.</span></h2>
+
+            <p class="side-label">MENU</p>
+
+            <a href="#dashboard" class="side-link active">▦ Dashboard</a>
+            <a href="#programs" class="side-link">🏋 Workouts</a>
+            <a href="#nutrition" class="side-link">🥗 Nutrition</a>
+            <a href="#calories" class="side-link">🔥 Calories</a>
+            <a href="#bmi" class="side-link">📊 BMI Calculator</a>
+
+            <div class="sidebar-bottom">
+                <p class="side-label">YOUR ACCOUNT</p>
+                <a href="#contact" class="side-link">⚙ Settings</a>
+                <a href="#contact" class="side-link">↪ Contact</a>
+            </div>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="dash-main">
+
+            <div class="dash-topbar">
+                <div>
+                    <span class="dash-subtitle">OVERVIEW</span>
+                    <h1>Dashboard</h1>
+                </div>
+
+                <div class="profile">
+                    <div class="profile-avatar">A</div>
+                    <div>
+                        <strong>ATHLETE</strong>
+                        <small>Fitness Member</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-welcome">
+                <div>
+                    <span>WELCOME BACK, ATHLETE</span>
+                    <h2>BUILD YOUR <span>BEST SELF.</span></h2>
+                    <p>Consistency is the key to your transformation.</p>
+                    <a href="#programs">EXPLORE WORKOUTS →</a>
+                </div>
+                <div class="welcome-emoji">🏋️</div>
+            </div>
+
+            <!-- STATISTICS -->
+            <div class="dash-stats">
+
+                <div class="dash-stat">
+                    <span>COMPLETED WORKOUTS</span>
+                    <h2 id="workout-count">0</h2>
+                    <small>Exercises completed</small>
+                </div>
+
+                <div class="dash-stat">
+                    <span>DAILY PROGRESS</span>
+                    <h2 id="goal-count">0%</h2>
+                    <small>Today's achievement</small>
+                </div>
+
+                <div class="dash-stat">
+                    <span>REMAINING EXERCISES</span>
+                    <h2 id="remaining-count">5</h2>
+                    <small>Keep pushing!</small>
+                </div>
+
+            </div>
+
+            <!-- WORKOUT AREA -->
+            <div class="dash-grid">
+
+                <div class="dash-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <span>TODAY'S SESSION</span>
+                            <h3>Workout Tracker</h3>
+                        </div>
+                        <span class="live-badge">● ACTIVE</span>
+                    </div>
+
+                    <div class="dash-progress">
+                        <div class="progress-info">
+                            <span>Daily Goal</span>
+                            <strong id="progress-text">0 of 5 completed</strong>
+                        </div>
+
+                        <div class="progress-track">
+                            <div id="progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="exercise-list">
+
+                        <label class="exercise-item">
+                            <input type="checkbox" class="exercise-check">
+                            <span>Bench Press</span>
+                            <small>3 × 12</small>
+                        </label>
+
+                        <label class="exercise-item">
+                            <input type="checkbox" class="exercise-check">
+                            <span>Squats</span>
+                            <small>3 × 15</small>
+                        </label>
+
+                        <label class="exercise-item">
+                            <input type="checkbox" class="exercise-check">
+                            <span>Pull Ups</span>
+                            <small>3 × 10</small>
+                        </label>
+
+                        <label class="exercise-item">
+                            <input type="checkbox" class="exercise-check">
+                            <span>Shoulder Press</span>
+                            <small>3 × 12</small>
+                        </label>
+
+                        <label class="exercise-item">
+                            <input type="checkbox" class="exercise-check">
+                            <span>Plank</span>
+                            <small>3 × 30 sec</small>
+                        </label>
+
+                    </div>
+
+                    <button class="reset-btn" onclick="resetWorkout()">
+                        RESET SESSION
+                    </button>
+
+                </div>
+
+                <!-- WEEKLY ACTIVITY -->
+                <div class="dash-panel activity-panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <span>YOUR PERFORMANCE</span>
+                            <h3>Weekly Activity</h3>
+                        </div>
+                    </div>
+
+                    <div class="activity-chart">
+                        <div class="chart-column">
+                            <div class="chart-bar" style="height:45%"></div>
+                            <small>MON</small>
+                        </div>
+
+                        <div class="chart-column">
+                            <div class="chart-bar" style="height:75%"></div>
+                            <small>TUE</small>
+                        </div>
+
+                        <div class="chart-column">
+                            <div class="chart-bar" style="height:55%"></div>
+                            <small>WED</small>
+                        </div>
+
+                        <div class="chart-column">
+                            <div class="chart-bar" style="height:90%"></div>
+                            <small>THU</small>
+                        </div>
+
+                        <div class="chart-column">
+                            <div class="chart-bar" style="height:65%"></div>
+                            <small>FRI</small>
+                        </div>
+
+                        <div class="chart-column">
+                            <div class="chart-bar" style="height:35%"></div>
+                            <small>SAT</small>
+                        </div>
+
+                        <div class="chart-column">
+                            <div class="chart-bar" style="height:20%"></div>
+                            <small>SUN</small>
+                        </div>
+                    </div>
+
+                    <div class="activity-note">
+                        <span>●</span> Weekly activity preview
+                    </div>
+
+                    <div class="motivation">
+                        <span>YOUR MINDSET</span>
+                        <h3>NO EXCUSES.<br>JUST RESULTS.</h3>
+                        <p>Every day is another opportunity to improve.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</section>
+
+<!-- PROFILE SETTINGS -->
+<section id="settings" class="settings-section">
+    <div class="section-title">
+        <span>YOUR ACCOUNT</span>
+        <h2>PROFILE <span>SETTINGS</span></h2>
+        <p>Manage your fitness information</p>
+    </div>
+
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="profile-avatar">IF</div>
+            <div>
+                <h3 id="profile-display-name">Your Name</h3>
+                <p>IRON FIT Member</p>
+            </div>
+        </div>
+
+        <form id="profile-form">
+            <div class="profile-grid">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="profile-name"
+                           placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" id="profile-age"
+                           placeholder="Your age" min="10" max="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Weight (kg)</label>
+                    <input type="number" id="profile-weight"
+                           placeholder="Example: 80" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Height (cm)</label>
+                    <input type="number" id="profile-height"
+                           placeholder="Example: 180" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Fitness Goal</label>
+                    <select id="profile-goal">
+                        <option value="Lose Weight">Lose Weight</option>
+                        <option value="Build Muscle">Build Muscle</option>
+                        <option value="Stay Fit">Stay Fit</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="save-profile-btn">
+                SAVE CHANGES
+            </button>
+            <p id="profile-message"></p>
+        </form>
+    </div>
+</section>
+
+
+    <!-- About -->
+    <section class="about" id="about">
+        <h2>ABOUT US</h2>
+        <p>We help you become stronger, healthier and better.</p>
+    </section>
+
+<!-- NUTRITION SECTION -->
+<section class="nutrition" id="nutrition">
+
+    <div class="section-title">
+        <span>FUEL YOUR BODY</span>
+        <h2>SMART <span>NUTRITION</span></h2>
+        <p>Eat better. Train better. Live better.</p>
+    </div>
+
+    <div class="nutrition-container">
+
+        <div class="nutrition-card">
+            <div class="nutrition-icon">🥗</div>
+            <h3>WEIGHT LOSS</h3>
+            <p>Balanced meals designed to support fat loss.</p>
+            <ul>
+                <li>High protein</li>
+                <li>Balanced carbohydrates</li>
+                <li>Healthy fats</li>
+            </ul>
+        </div>
+
+        <div class="nutrition-card featured">
+            <div class="nutrition-icon">🍗</div>
+            <h3>MUSCLE GAIN</h3>
+            <p>Nutrition plans focused on muscle development.</p>
+            <ul>
+                <li>Protein-rich meals</li>
+                <li>Calorie surplus</li>
+                <li>Quality carbohydrates</li>
+            </ul>
+        </div>
+
+        <div class="nutrition-card">
+            <div class="nutrition-icon">🥑</div>
+            <h3>HEALTHY LIFE</h3>
+            <p>Build healthy eating habits for everyday life.</p>
+            <ul>
+                <li>Whole foods</li>
+                <li>Vitamins and minerals</li>
+                <li>Balanced nutrition</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- CALORIE CALCULATOR -->
+<section class="calorie-section" id="calories">
+
+    <div class="section-title">
+        <span>UNDERSTAND YOUR NEEDS</span>
+        <h2>CALORIE <span>CALCULATOR</span></h2>
+        <p>Discover your estimated daily calorie needs.</p>
+    </div>
+
+    <div class="calorie-box">
+
+        <div class="calorie-form">
+
+            <label>Gender</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <label>Age</label>
+            <input type="number" id="age" placeholder="Your age">
+
+            <label>Weight (KG)</label>
+            <input type="number" id="cal-weight" placeholder="Your weight">
+
+            <label>Height (CM)</label>
+            <input type="number" id="cal-height" placeholder="Your height">
+
+            <label>Activity Level</label>
+            <select id="activity">
+                <option value="1.2">Sedentary</option>
+                <option value="1.375">Light Activity</option>
+                <option value="1.55">Moderate Activity</option>
+                <option value="1.725">Very Active</option>
+                <option value="1.9">Extremely Active</option>
+            </select>
+
+            <label>Your Goal</label>
+            <select id="goal">
+                <option value="lose">Lose Weight</option>
+                <option value="maintain">Maintain Weight</option>
+                <option value="gain">Gain Weight</option>
+            </select>
+
+            <button onclick="calculateCalories()">
+                CALCULATE MY CALORIES
+            </button>
+
+            <div id="calorie-result"></div>
+
+        </div>
+
+    </div>
+</section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <h2>READY TO START?</h2>
+        <a href="mailto:info@ironfit.com">CONTACT US</a>
+    </section>
+
+    <footer>
+        <p>© 2026 IRON FIT. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
