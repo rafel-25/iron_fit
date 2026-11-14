@@ -35,6 +35,11 @@ function calculateBMI() {
 // Ensure the HTML button can always call the calculator.
 window.calculateBMI = calculateBMI;
 
+document.addEventListener("DOMContentLoaded", () => {
+    const bmiButton = document.getElementById("calculate-bmi-btn");
+    if (bmiButton) bmiButton.addEventListener("click", calculateBMI);
+});
+
 // CALORIE CALCULATOR
 
 function calculateCalories() {
