@@ -117,7 +117,7 @@
             <label>Your Height (CM)</label>
             <input type="number" id="height" placeholder="Example: 180">
 
-            <button type="button" id="calculate-bmi-btn">CALCULATE BMI</button>
+            <button type="button" id="calculate-bmi-btn" onclick="calculateBMI()">CALCULATE BMI</button>
 
             <div id="bmi-result"></div>
         </div>
@@ -494,7 +494,7 @@
                 <option value="gain">Gain Weight</option>
             </select>
 
-            <button type="button" id="calculate-calories-btn">
+            <button type="button" id="calculate-calories-btn" onclick="calculateCalories()">
                 CALCULATE MY CALORIES
             </button>
 
@@ -517,6 +517,40 @@
 
 
     <script>
+        // Standalone calculator handlers: keep these independent from script.js.
+        window.calculateBMI = function () {
+            const weight = Number(document.getElementById("weight")?.value);
+            const height = Number(document.getElementById("height")?.value);
+            const result = document.getElementById("bmi-result");
+            if (!result) return;
+            if (!Number.isFinite(weight) || weight <= 0 || !Number.isFinite(height) || height < 50 || height > 250) {
+                result.textContent = "Please enter a valid weight and height.";
+                return;
+            }
+            const bmi = weight / Math.pow(height / 100, 2);
+            const category = bmi < 18.5 ? "Underweight" : bmi < 25 ? "Normal Weight" : bmi < 30 ? "Overweight" : "Obesity";
+            result.innerHTML = "<h3>Your BMI: " + bmi.toFixed(1) + "</h3><p>Category: <strong>" + category + "</strong></p><p class='bmi-note'>BMI is a screening estimate, not a diagnosis.</p>";
+        };
+
+        window.calculateCalories = function () {
+            const gender = document.getElementById("gender")?.value || "male";
+            const age = Number(document.getElementById("age")?.value);
+            const weight = Number(document.getElementById("cal-weight")?.value);
+            const height = Number(document.getElementById("cal-height")?.value);
+            const activity = Number(document.getElementById("activity")?.value);
+            const goal = document.getElementById("goal")?.value || "maintain";
+            const result = document.getElementById("calorie-result");
+            if (!result) return;
+            if (!Number.isFinite(age) || age < 15 || age > 100 || !Number.isFinite(weight) || weight <= 0 || !Number.isFinite(height) || height <= 0 || !Number.isFinite(activity) || activity <= 0) {
+                result.textContent = "Please enter valid information (age 15–100, weight and height above zero).";
+                return;
+            }
+            const bmr = 10 * weight + 6.25 * height - 5 * age + (gender === "male" ? 5 : -161);
+            const maintenance = Math.round(bmr * activity);
+            const target = goal === "lose" ? maintenance - 300 : goal === "gain" ? maintenance + 200 : maintenance;
+            result.innerHTML = "<h3>" + target + " kcal / day</h3><p>Maintenance: " + maintenance + " kcal</p><p>Estimated daily calories for your goal.</p>";
+        };
+
         // Mobile navigation
         const menuToggle = document.getElementById('menu-toggle');
         const navLinks = document.getElementById('nav-links');
