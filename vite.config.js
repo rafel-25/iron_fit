@@ -16,6 +16,7 @@ export default defineConfig({
         register: resolve(projectRoot, "register.html"),
         program: resolve(projectRoot, "program.html"),
         exercises: resolve(projectRoot, "exercises.html"),
+        meals: resolve(projectRoot, "meals.html"),
         admin: resolve(projectRoot, "admin/dashboard.html"),
         user: resolve(projectRoot, "user/dashboard.html")
       }
