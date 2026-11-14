@@ -67,3 +67,47 @@ async function loadHomeContent() {
 }
 
 loadHomeContent();
+
+
+async function loadPublishedPrograms() {
+  const container = document.querySelector("#public-programs");
+  if (!container) return;
+  const { data, error } = await supabase
+    .from("workouts")
+    .select("id,title,category,level,duration_minutes,description,created_at")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.warn("IRON FIT programs could not be loaded:", error.message);
+    return;
+  }
+
+  const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+  }[ch]));
+
+  if (!data?.length) {
+    container.innerHTML = '<p class="program-empty">No programs published yet. Check back soon.</p>';
+    return;
+  }
+
+  const photos = [
+    "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900",
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900",
+    "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900"
+  ];
+
+  container.innerHTML = data.map((program, index) => `
+    <article class="program-card">
+      <img src="${photos[index % photos.length]}" alt="${escapeHTML(program.title)}" loading="lazy">
+      <div class="card-content">
+        <span>${escapeHTML(program.category || "TRAINING")} / ${escapeHTML(program.level || "ALL LEVELS")}</span>
+        <h3>${escapeHTML(program.title)}</h3>
+        <p>${escapeHTML(program.description || "")}</p>
+        <small>${Number(program.duration_minutes) || 30} MINUTES</small>
+      </div>
+    </article>
+  `).join("");
+}
+
+loadPublishedPrograms();
