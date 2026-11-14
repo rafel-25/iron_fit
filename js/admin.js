@@ -16,7 +16,7 @@ function notify(text,ok=false){
 async function refresh(){
   const [m,x]=await Promise.all([
     supabase.from("profiles").select("id,username,created_at").eq("role","user").eq("is_active",true).order("created_at",{ascending:false}),
-    supabase.from("exercises").select("id,title,category,description,equipment,difficulty,demo_url").order("category").order("title")
+    supabase.from("exercises").select("id,title,category,description,equipment,difficulty,video_url").order("category").order("title")
   ]);
   if(m.error||x.error){notify((m.error||x.error).message);return;}
   const members=m.data||[], exercises=x.data||[];
@@ -26,7 +26,7 @@ async function refresh(){
     <article class="item"><div><strong>${esc(member.username)}</strong><p>Joined ${new Date(member.created_at).toLocaleDateString()}</p></div><button data-action="remove-member" data-id="${member.id}">REMOVE MEMBER</button></article>
   `).join("")||'<p class="empty">No active members right now.</p>';
   $("#exerciseList").innerHTML=exercises.map(ex=>`
-    <article class="item"><div><strong>${esc(ex.title)}</strong><p>${esc(ex.category)} · ${esc(ex.equipment||"Bodyweight")} · ${esc(ex.difficulty)}</p></div><button data-action="delete-exercise" data-id="${ex.id}">DELETE</button></article>
+    <article class="item"><div><strong>${esc(ex.title)}</strong><p>${esc(ex.category)} · ${esc(ex.equipment||"Bodyweight")} · ${esc(ex.difficulty)} · ${ex.video_url?"Video ready":"No video"}</p></div><button data-action="delete-exercise" data-id="${ex.id}">DELETE</button></article>
   `).join("")||'<p class="empty">No exercises yet.</p>';
 }
 $("#exerciseForm").addEventListener("submit",async event=>{
@@ -38,10 +38,12 @@ $("#exerciseForm").addEventListener("submit",async event=>{
     description:$("#eDescription").value.trim(),
     equipment:$("#eEquipment").value.trim()||null,
     difficulty:$("#eDifficulty").value,
-    demo_url:$("#eDemo").value.trim()||null
+    video_url:$("#eVideo").value.trim()||null,
+    poster_url:$("#ePoster").value.trim()||null,
+    steps:$("#eSteps").value.split("\\n").map(x=>x.trim()).filter(Boolean)
   };
   if(!row.title||!row.description){button.disabled=false;return notify("Add an exercise name and explanation.");}
-  if(row.demo_url){try{const u=new URL(row.demo_url);if(!["https:","http:"].includes(u.protocol))throw new Error();}catch{button.disabled=false;return notify("Enter a valid http or https video URL.");}}
+  for(const value of [row.video_url,row.poster_url].filter(Boolean)){try{const u=new URL(value);if(!["https:","http:"].includes(u.protocol))throw new Error();}catch{button.disabled=false;return notify("Enter valid http or https media URLs.");}}
   const {error}=await supabase.from("exercises").insert(row);
   button.disabled=false;
   if(error)return notify(error.message);
