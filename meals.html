@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Simple fitness meals with calories, protein and easy recipes.">
+<title>Fitness Meals | IRON FIT</title><link rel="stylesheet" href="meals.css">
+</head>
+<body>
+<header class="meal-nav"><a class="brand" href="index.html">IRON<span>FIT.</span></a><nav><a href="index.html">HOME</a><a href="exercises.html">EXERCISES</a><a class="active" href="meals.html">MEALS</a><a href="login.html">MEMBER LOGIN</a></nav></header>
+<main>
+<section class="meal-hero"><p class="eyebrow">FUEL YOUR PERFORMANCE</p><h1>EAT SMART.<br><span>GET STRONGER.</span></h1><p>Easy everyday meals with estimated calories, protein and ingredients to support your fitness goal.</p><div class="meal-search"><input id="mealSearch" type="search" placeholder="Search meals or ingredients..." aria-label="Search meals"></div></section>
+<section class="meal-library">
+<div class="filters" id="mealFilters"><button class="active" data-filter="All">ALL MEALS</button><button data-filter="Cutting">CUTTING</button><button data-filter="Muscle Gain">MUSCLE GAIN</button><button data-filter="Balanced">BALANCED</button></div>
+<div class="meal-heading"><div><p class="eyebrow">THE FOOD MENU</p><h2 id="mealTitle">ALL MEALS</h2></div><span id="mealCount">12 RECIPES</span></div>
+<div class="meal-grid" id="mealGrid"></div>
+<p class="meal-note">Nutrition values are estimates and vary with ingredient brands, portions and cooking methods. Adjust portions to your own daily calorie and protein needs.</p>
+</section>
+</main>
+<footer>IRON<span>FIT.</span> · TRAIN • ELEVATE • REPEAT</footer>
+<script type="module" src="js/meals.js"></script>
+</body></html>
