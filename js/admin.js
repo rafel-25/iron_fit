@@ -75,7 +75,18 @@ document.addEventListener("change", async e=>{
 document.addEventListener("click", async e=>{
   const b=e.target.closest("button[data-action]");if(!b)return;
   const {action,id}=b.dataset;
-  if(action==="manage-exercises"){\n    selectedProgramId=id;\n    const panel=$("#exerciseManager");\n    panel.hidden=false;\n    $("#exerciseManagerTitle").textContent=`EXERCISES · ${b.dataset.title || "PROGRAM"}`;\n    $("#exerciseForm").reset();\n    $("#eSets").value=3;$("#eReps").value="10-12";$("#eRest").value=60;$("#eOrder").value=0;\n    await loadProgramExercises();\n    panel.scrollIntoView({behavior:"smooth",block:"start"});\n    return;\n  }\n  if(action==="toggle"){
+  if(action==="manage-exercises"){
+    selectedProgramId=id;
+    const panel=$("#exerciseManager");
+    panel.hidden=false;
+    $("#exerciseManagerTitle").textContent=`EXERCISES · ${b.dataset.title || "PROGRAM"}`;
+    $("#exerciseForm").reset();
+    $("#eSets").value=3;$("#eReps").value="10-12";$("#eRest").value=60;$("#eOrder").value=0;
+    await loadProgramExercises();
+    panel.scrollIntoView({behavior:"smooth",block:"start"});
+    return;
+  }
+  if(action==="toggle"){
     const {error}=await supabase.from("profiles").update({is_active:b.dataset.active!=="true"}).eq("id",id);
     if(error)return message(error.message);
     message("Member status updated.",true);return refresh();
@@ -94,10 +105,26 @@ document.addEventListener("click", async e=>{
     if(!["Beginner","Intermediate","Advanced"].includes(level))return message("Invalid level.");
     const duration=Number(prompt("Duration in minutes:"));if(!Number.isInteger(duration)||duration<1||duration>600)return message("Invalid duration.");
     const description=prompt("Description:");if(description===null)return;
-    const {error}=await supabase.from("workouts").update({title:title.trim(),category:category.trim()||"General",level,duration_minutes:duration,description:description.trim()||null}).eq("id",id);
+    const image_url=prompt("Program image URL (https://...):");if(image_url===null)return;
+    const {error}=await supabase.from("workouts").update({title:title.trim(),category:category.trim()||"General",level,duration_minutes:duration,description:description.trim()||null,image_url:image_url.trim()||null}).eq("id",id);
     if(error)return message(error.message);message("Workout updated.",true);return refresh();
   }
-  if(action==="edit-exercise"){\n    const title=prompt("Exercise name:",b.dataset.title||"");if(title===null||!title.trim())return;\n    const muscle_group=prompt("Muscle group:",b.dataset.muscle||"");if(muscle_group===null)return;\n    const sets=Number(prompt("Sets:",b.dataset.sets||"3"));if(!Number.isInteger(sets)||sets<1||sets>20)return message("Sets must be between 1 and 20.");\n    const reps=prompt("Reps:",b.dataset.reps||"10-12");if(reps===null||!reps.trim())return;\n    const rest_seconds=Number(prompt("Rest seconds:",b.dataset.rest||"60"));if(!Number.isInteger(rest_seconds)||rest_seconds<0||rest_seconds>900)return message("Invalid rest time.");\n    const instructions=prompt("Instructions:",b.dataset.instructions||"");if(instructions===null)return;\n    const {error}=await supabase.from("program_exercises").update({title:title.trim(),muscle_group:muscle_group.trim()||null,sets,reps:reps.trim(),rest_seconds,instructions:instructions.trim()||null}).eq("id",id);\n    if(error)return message(error.message);message("Exercise updated.",true);return loadProgramExercises();\n  }\n  if(action==="delete-exercise"){\n    if(!confirm("Delete this exercise?"))return;\n    const {error}=await supabase.from("program_exercises").delete().eq("id",id);\n    if(error)return message(error.message);message("Exercise deleted.",true);return loadProgramExercises();\n  }\n  if(action==="edit-plan"){
+  if(action==="edit-exercise"){
+    const title=prompt("Exercise name:",b.dataset.title||"");if(title===null||!title.trim())return;
+    const muscle_group=prompt("Muscle group:",b.dataset.muscle||"");if(muscle_group===null)return;
+    const sets=Number(prompt("Sets:",b.dataset.sets||"3"));if(!Number.isInteger(sets)||sets<1||sets>20)return message("Sets must be between 1 and 20.");
+    const reps=prompt("Reps:",b.dataset.reps||"10-12");if(reps===null||!reps.trim())return;
+    const rest_seconds=Number(prompt("Rest seconds:",b.dataset.rest||"60"));if(!Number.isInteger(rest_seconds)||rest_seconds<0||rest_seconds>900)return message("Invalid rest time.");
+    const instructions=prompt("Instructions:",b.dataset.instructions||"");if(instructions===null)return;
+    const {error}=await supabase.from("program_exercises").update({title:title.trim(),muscle_group:muscle_group.trim()||null,sets,reps:reps.trim(),rest_seconds,instructions:instructions.trim()||null}).eq("id",id);
+    if(error)return message(error.message);message("Exercise updated.",true);return loadProgramExercises();
+  }
+  if(action==="delete-exercise"){
+    if(!confirm("Delete this exercise?"))return;
+    const {error}=await supabase.from("program_exercises").delete().eq("id",id);
+    if(error)return message(error.message);message("Exercise deleted.",true);return loadProgramExercises();
+  }
+  if(action==="edit-plan"){
     const title=prompt("Plan title:");if(title===null||!title.trim())return;
     const goal=prompt("Goal:");if(goal===null)return;
     const calories=Number(prompt("Calories per day:"));if(!Number.isInteger(calories)||calories<0)return message("Invalid calories.");
