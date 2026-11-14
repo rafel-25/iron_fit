@@ -42,7 +42,7 @@ $("#exerciseForm").addEventListener("submit",async event=>{
     poster_url:$("#ePoster").value.trim()||null,
     steps:$("#eSteps").value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean)
   };
-  if(!row.title||!row.description){button.disabled=false;return notify("Add an exercise name and explanation.");}
+  if(!row.title||!row.description||!row.video_url){button.disabled=false;return notify("Add an exercise name, explanation and MP4 video URL.");}
   for(const value of [row.video_url,row.poster_url].filter(Boolean)){try{const u=new URL(value);if(!["https:","http:"].includes(u.protocol))throw new Error();}catch{button.disabled=false;return notify("Enter valid http or https media URLs.");}}
   const {error}=await supabase.from("exercises").insert(row);
   button.disabled=false;
