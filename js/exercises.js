@@ -1,6 +1,6 @@
 import { supabase } from "../lib/supabase.js";
 const $ = s => document.querySelector(s);
-const categories = ["All","Chest","Back","Legs","Shoulders","Arms","Abs"];
+const categories = ["All","Chest","Back","Legs","Calves","Shoulders","Arms","Abs"];
 let exercises = [];
 let selected = "All";
 let query = "";
