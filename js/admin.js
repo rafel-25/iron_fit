@@ -2,6 +2,9 @@ import { supabase } from "../lib/supabase.js";
 import { requireProfile, logout } from "./common.js";
 
 const $ = (selector) => document.querySelector(selector);
+const siteForm = $("#siteContentForm");
+const siteMsg = $("#siteContentMessage");
+let currentSiteContent = {};
 const esc = (value = "") => String(value).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 $("#logout")?.addEventListener("click", logout);
 
@@ -104,10 +107,6 @@ document.addEventListener("click", async e=>{
 
 
 /* HOME PAGE WEBSITE BUILDER */
-const siteForm = $("#siteContentForm");
-const siteMsg = $("#siteContentMessage");
-let currentSiteContent = {};
-
 function siteValue(id) {
   return document.getElementById(id)?.value?.trim() || "";
 }
