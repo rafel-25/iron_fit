@@ -2,6 +2,15 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin | IRON FIT</title><link rel="stylesheet" href="../auth.css"><style>
 .admin-main{max-width:1050px}.admin-head{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap}.stats{margin:22px 0 30px}.section{margin:30px 0;padding:24px;background:#0d0d0d;border:1px solid #292929;border-radius:10px}.section h2{margin:0 0 8px}.muted{color:#999;font-size:13px;line-height:1.7}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:18px}.grid .full{grid-column:1/-1}.grid input,.grid select,.grid textarea{width:100%;padding:13px;background:#080808;border:1px solid #383838;border-radius:7px;color:#f5f5f5;font:inherit}.grid textarea{min-height:100px;resize:vertical}.grid label{display:flex;flex-direction:column;gap:7px;color:#bbb;font-size:12px;font-weight:700}.grid button{border:0;background:#ed2939;color:white;padding:14px;font-weight:900;letter-spacing:1px;cursor:pointer;border-radius:5px}.grid button:disabled{opacity:.5}.list{display:grid;gap:10px;margin-top:18px}.item{background:#090909;border:1px solid #292929;padding:15px;border-radius:7px;display:flex;align-items:center;justify-content:space-between;gap:15px}.item p{margin:5px 0 0;color:#999;font-size:12px;line-height:1.5}.item button{background:transparent;border:1px solid #733039;color:#ff8189;padding:9px 12px;border-radius:4px;font-size:10px;font-weight:900;cursor:pointer}.item button:hover{background:#ed2939;color:#fff}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse}td,th{padding:13px 10px;border-bottom:1px solid #292929;text-align:left;font-size:12px}th{color:#999;font-size:10px;letter-spacing:1px}.status{color:#76d49a}.notice{color:#888;font-size:11px;margin-top:12px}.empty{color:#888;padding:18px;border:1px dashed #333;text-align:center}.msg{font-size:12px;margin-top:12px}.success{color:#78d99c}.error{color:#ff8189}
 @media(max-width:650px){.grid{grid-template-columns:1fr}.grid .full{grid-column:auto}.item{align-items:flex-start;flex-direction:column}.item button{width:100%}.section{padding:17px}}
+
+/* ADMIN BLUE / BLACK + NEON RED */
+body{background:#05070c!important;background-image:radial-gradient(ellipse at 12% 0%,rgba(20,65,116,.28),transparent 42%)!important}
+.section{background:linear-gradient(145deg,#0d192a,#080e18)!important;border-color:#1e3858!important}
+.grid input,.grid select,.grid textarea{background:#060c16!important;border-color:#294361!important}
+.grid input:focus,.grid select:focus,.grid textarea:focus{border-color:#ff2638!important;box-shadow:0 0 0 3px rgba(255,38,56,.12)}
+.item{background:#091322!important;border-color:#1e3858!important}
+.grid button{background:#ff2638;box-shadow:0 0 16px rgba(255,38,56,.25)}
+
 </style></head><body>
 <header class="top"><a class="brand" href="../index.html">IRON<span>FIT.</span> <small>ADMIN</small></a><button id="logout" class="logout">LOG OUT ↗</button></header>
 <main class="panel wide admin-main">
