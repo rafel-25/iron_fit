@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="IRON FIT fitness platform"><title>Calorie Calculator | IRON FIT</title><link rel="stylesheet" href="style.css"><style>.site-header{position:relative!important}.page-main{min-height:65vh;padding-top:35px}.logo img{width:155px;height:52px;object-fit:contain;display:block}.nav-links a{white-space:nowrap}@media(max-width:1050px){.nav-links{gap:14px}.nav-links a{font-size:12px}}.page-heading{padding:55px 8% 15px;text-align:center}.page-heading h1{font-size:clamp(30px,5vw,54px)}.page-heading h1 span{color:#ff2638}</style><script>function calculateCalories(){const g=document.getElementById('gender').value,a=Number(document.getElementById('age').value),w=Number(document.getElementById('cal-weight').value),h=Number(document.getElementById('cal-height').value),act=Number(document.getElementById('activity').value),goal=document.getElementById('goal').value,r=document.getElementById('calorie-result');if(!Number.isFinite(a)||a<15||a>100||!Number.isFinite(w)||w<=0||!Number.isFinite(h)||h<=0||!Number.isFinite(act)||act<=0){r.textContent='Please enter valid information (age 15–100, weight and height above zero).';return;}const bmr=10*w+6.25*h-5*a+(g==='male'?5:-161),maint=Math.round(bmr*act),target=goal==='lose'?maint-300:goal==='gain'?maint+200:maint;r.innerHTML='<h3>'+target+' kcal / day</h3><p>Maintenance: '+maint+' kcal</p><p>Estimated daily calories for your goal.</p>';}</script></head><body><header class="site-header"><nav class="navbar" aria-label="Main navigation"><a class="logo" href="index.html" aria-label="IRON FIT home"><img src="assets/iron-fit-logo.svg" alt="IRON FIT — Train, Eat, Grow"></a><button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false"><span></span><span></span><span></span></button><ul class="nav-links" id="nav-links"><li><a href="index.html">Home</a></li><li><a href="training.html">Training</a></li><li><a href="exercises.html">Exercises</a></li><li><a href="meals.html">Meals</a></li><li><a href="nutrition.html">Nutrition</a></li><li><a href="bmi.html">BMI</a></li><li><a href="calories.html">Calories</a></li><li><a href="dashboard.html">Dashboard</a></li><li><a href="profile.html">Profile</a></li></ul><div class="nav-actions"><a class="nav-login" href="login.html">LOG IN</a><a class="nav-btn" href="register.html"><span>GET STARTED</span><b>↗</b></a></div></nav></header><main class="page-main"><!-- CALORIE CALCULATOR -->
+<section class="calorie-section" id="calories">
+
+    <div class="section-title">
+        <span>UNDERSTAND YOUR NEEDS</span>
+        <h2>CALORIE <span>CALCULATOR</span></h2>
+        <p>Discover your estimated daily calorie needs.</p>
+    </div>
+
+    <div class="calorie-box">
+
+        <div class="calorie-form">
+
+            <label>Gender</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <label>Age</label>
+            <input type="number" id="age" placeholder="Your age">
+
+            <label>Weight (KG)</label>
+            <input type="number" id="cal-weight" placeholder="Your weight">
+
+            <label>Height (CM)</label>
+            <input type="number" id="cal-height" placeholder="Your height">
+
+            <label>Activity Level</label>
+            <select id="activity">
+                <option value="1.2">Sedentary</option>
+                <option value="1.375">Light Activity</option>
+                <option value="1.55">Moderate Activity</option>
+                <option value="1.725">Very Active</option>
+                <option value="1.9">Extremely Active</option>
+            </select>
+
+            <label>Your Goal</label>
+            <select id="goal">
+                <option value="lose">Lose Weight</option>
+                <option value="maintain">Maintain Weight</option>
+                <option value="gain">Gain Weight</option>
+            </select>
+
+            <button type="button" id="calculate-calories-btn" onclick="calculateCalories()">
+                CALCULATE MY CALORIES
+            </button>
+
+            <div id="calorie-result"></div>
+
+        </div>
+
+    </div>
+</section></main><footer>
+        <p data-site="footerText">© 2026 IRON FIT. All Rights Reserved.</p>
+    </footer><script>const toggle=document.getElementById('menu-toggle');const links=document.getElementById('nav-links');toggle?.addEventListener('click',()=>{const open=links.classList.toggle('is-open');toggle.classList.toggle('is-active',open);toggle.setAttribute('aria-expanded',String(open));});links?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('is-open');toggle?.classList.remove('is-active');toggle?.setAttribute('aria-expanded','false');}));</script></body></html>
