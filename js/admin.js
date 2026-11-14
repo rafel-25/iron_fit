@@ -40,7 +40,7 @@ $("#exerciseForm").addEventListener("submit",async event=>{
     difficulty:$("#eDifficulty").value,
     video_url:$("#eVideo").value.trim()||null,
     poster_url:$("#ePoster").value.trim()||null,
-    steps:$("#eSteps").value.split("\\n").map(x=>x.trim()).filter(Boolean)
+    steps:$("#eSteps").value.split(/\\r?\\n/).map(x=>x.trim()).filter(Boolean)
   };
   if(!row.title||!row.description){button.disabled=false;return notify("Add an exercise name and explanation.");}
   for(const value of [row.video_url,row.poster_url].filter(Boolean)){try{const u=new URL(value);if(!["https:","http:"].includes(u.protocol))throw new Error();}catch{button.disabled=false;return notify("Enter valid http or https media URLs.");}}
