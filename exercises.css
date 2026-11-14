@@ -7,3 +7,18 @@
 .exercise-guide ol,.exercise-guide ul{padding-left:20px;margin:10px 0}
 .exercise-guide li{padding:3px 0}
 .exercise-guide h4{font-size:9px;letter-spacing:1.4px;color:#ed626d;margin:16px 0 5px}
+
+
+/* BLUE / BLACK BASE WITH NEON RED ACCENTS */
+:root{--bg:#05070c;--panel:#0b1423;--panel2:#101d31;--line:#1d3552;--red:#ff2638;--glow:rgba(255,38,56,.3)}
+body{background:radial-gradient(ellipse at 85% 0%,rgba(19,63,112,.28),transparent 38%),#05070c;color:#f4f7ff}
+.ex-nav{background:rgba(5,9,17,.97);border-color:#1b3553;box-shadow:0 8px 30px #0008}
+.ex-hero{border-color:#1b3553}
+.exercise-card{background:linear-gradient(145deg,#101d31,#080e19);border-color:#1d3552}
+.exercise-card:hover{border-color:#ff2638;box-shadow:0 0 22px rgba(255,38,56,.12)}
+.search-wrap input{background:#091322;border-color:#254363}
+.category-tabs button{background:#0b1728;border-color:#27415e;color:#b9c9dc}
+.category-tabs button:hover,.category-tabs button.active,.demo-link{background:#ff2638;border-color:#ff2638;color:#fff;box-shadow:0 0 18px rgba(255,38,56,.3)}
+.exercise-video,.video-placeholder{background:#03060b;border-color:#254363}
+footer{border-color:#1b3553;background:#050811}
+
