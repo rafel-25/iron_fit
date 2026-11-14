@@ -1612,3 +1612,19 @@ footer {
     .site-header .logo-word small { font-size: 6px; letter-spacing: 1.5px; }
     .site-header .nav-btn { min-height: 39px; padding: 0 10px; gap: 8px; }
 }
+
+
+/* PROGRAM CATALOG CARDS */
+.program-container{grid-template-columns:repeat(auto-fit,minmax(250px,1fr));align-items:stretch}
+.program-card{padding:0;overflow:hidden;min-width:0}
+.program-card-link{display:block;height:100%;color:inherit;text-decoration:none}
+.program-card img{display:block;width:100%;height:210px;object-fit:cover;transition:transform .45s}
+.program-card:hover img{transform:scale(1.04)}
+.program-card .card-content{padding:24px}
+.program-card .card-content>span{display:block;color:#ff555f;font-size:10px;font-weight:800;letter-spacing:1.4px;margin-bottom:12px}
+.program-card h3{margin:0 0 12px;font-size:21px}
+.program-card p{min-height:48px;font-size:13px;margin-bottom:14px}
+.program-card small{color:#aaa;font-size:10px;letter-spacing:1px}
+.program-explore{display:block;color:#fff;font-size:10px;letter-spacing:1.2px;margin-top:20px}
+.program-card:hover .program-explore{color:#ff555f}
+.program-empty{grid-column:1/-1;text-align:center;color:#999;padding:30px}
