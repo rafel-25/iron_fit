@@ -14,6 +14,7 @@ export default defineConfig({
         home: resolve(projectRoot, "index.html"),
         login: resolve(projectRoot, "login.html"),
         register: resolve(projectRoot, "register.html"),
+        program: resolve(projectRoot, "program.html"),
         admin: resolve(projectRoot, "admin/dashboard.html"),
         user: resolve(projectRoot, "user/dashboard.html")
       }
