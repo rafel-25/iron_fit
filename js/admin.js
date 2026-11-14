@@ -13,6 +13,7 @@ if (ctx && ctx.profile.role !== "admin") location.replace("../user/dashboard.htm
 if (ctx?.profile.role === "admin") {
   $("#welcome").textContent = `Signed in as ${ctx.profile.username} · Administrator`;
   await refresh();
+  await loadSiteContentEditor();
 }
 
 function message(text, ok = false) {
