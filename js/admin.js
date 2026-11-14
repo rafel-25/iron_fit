@@ -101,3 +101,119 @@ document.addEventListener("click", async e=>{
     if(error)return message(error.message);message("Nutrition plan updated.",true);return refresh();
   }
 });
+
+
+/* HOME PAGE WEBSITE BUILDER */
+const siteForm = $("#siteContentForm");
+const siteMsg = $("#siteContentMessage");
+let currentSiteContent = {};
+
+function siteValue(id) {
+  return document.getElementById(id)?.value?.trim() || "";
+}
+function setSiteValue(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.value = value ?? "";
+}
+function showSiteMessage(text, ok = false) {
+  if (!siteMsg) return;
+  siteMsg.textContent = text;
+  siteMsg.className = ok ? "success" : "alert";
+}
+
+async function loadSiteContentEditor() {
+  if (!siteForm) return;
+  const { data, error } = await supabase
+    .from("site_content")
+    .select("content")
+    .eq("id", "home")
+    .maybeSingle();
+
+  if (error) return showSiteMessage(error.message);
+  currentSiteContent = data?.content || {};
+  const c = currentSiteContent;
+
+  const fields = {
+    sHeroTitleMain: "heroTitleMain",
+    sHeroTitleAccent: "heroTitleAccent",
+    sHeroDescription: "heroDescription",
+    sHeroButton: "heroButton",
+    sProgramEyebrow: "programEyebrow",
+    sProgramTitle: "programTitle",
+    sProgramDescription: "programDescription",
+    sAboutTitle: "aboutTitle",
+    sAboutDescription: "aboutDescription",
+    sNutritionEyebrow: "nutritionEyebrow",
+    sNutritionTitle: "nutritionTitle",
+    sNutritionDescription: "nutritionDescription",
+    sContactTitle: "contactTitle",
+    sContactButton: "contactButton",
+    sContactEmail: "contactEmail",
+    sFooterText: "footerText"
+  };
+  Object.entries(fields).forEach(([id, key]) => setSiteValue(id, c[key]));
+
+  (c.programs || []).forEach((item, i) => {
+    ["Eyebrow", "Title", "Description", "Image"].forEach(part => {
+      const key = part.toLowerCase();
+      setSiteValue(`sProgram${i}${part}`, item[key]);
+    });
+  });
+  (c.nutritionCards || []).forEach((item, i) => {
+    setSiteValue(`sNutrition${i}Icon`, item.icon);
+    setSiteValue(`sNutrition${i}Title`, item.title);
+    setSiteValue(`sNutrition${i}Description`, item.description);
+    setSiteValue(`sNutrition${i}Points`, (item.points || "").split("|").join("\n"));
+  });
+}
+
+if (siteForm) {
+  siteForm.addEventListener("submit", async event => {
+    event.preventDefault();
+    const button = siteForm.querySelector('button[type="submit"]');
+    if (button) button.disabled = true;
+    showSiteMessage("Saving home page…", true);
+
+    const next = {
+      ...currentSiteContent,
+      heroTitleMain: siteValue("sHeroTitleMain"),
+      heroTitleAccent: siteValue("sHeroTitleAccent"),
+      heroDescription: siteValue("sHeroDescription"),
+      heroButton: siteValue("sHeroButton"),
+      programEyebrow: siteValue("sProgramEyebrow"),
+      programTitle: siteValue("sProgramTitle"),
+      programDescription: siteValue("sProgramDescription"),
+      programs: [0,1,2].map(i => ({
+        eyebrow: siteValue(`sProgram${i}Eyebrow`),
+        title: siteValue(`sProgram${i}Title`),
+        description: siteValue(`sProgram${i}Description`),
+        image: siteValue(`sProgram${i}Image`)
+      })),
+      aboutTitle: siteValue("sAboutTitle"),
+      aboutDescription: siteValue("sAboutDescription"),
+      nutritionEyebrow: siteValue("sNutritionEyebrow"),
+      nutritionTitle: siteValue("sNutritionTitle"),
+      nutritionDescription: siteValue("sNutritionDescription"),
+      nutritionCards: [0,1,2].map(i => ({
+        icon: siteValue(`sNutrition${i}Icon`),
+        title: siteValue(`sNutrition${i}Title`),
+        description: siteValue(`sNutrition${i}Description`),
+        points: siteValue(`sNutrition${i}Points`).split("\n").map(x => x.trim()).filter(Boolean).join("|")
+      })),
+      contactTitle: siteValue("sContactTitle"),
+      contactButton: siteValue("sContactButton"),
+      contactEmail: siteValue("sContactEmail"),
+      footerText: siteValue("sFooterText")
+    };
+
+    const { error } = await supabase
+      .from("site_content")
+      .update({ content: next, updated_at: new Date().toISOString() })
+      .eq("id", "home");
+
+    if (button) button.disabled = false;
+    if (error) return showSiteMessage(error.message);
+    currentSiteContent = next;
+    showSiteMessage("Home page saved successfully. Refresh the website to see the changes.", true);
+  });
+}
