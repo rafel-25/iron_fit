@@ -74,7 +74,7 @@ async function loadPublishedPrograms() {
   if (!container) return;
   const { data, error } = await supabase
     .from("workouts")
-    .select("id,title,category,level,duration_minutes,description,created_at")
+    .select("id,title,category,level,duration_minutes,description,image_url,created_at")
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -85,29 +85,37 @@ async function loadPublishedPrograms() {
   const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, ch => ({
     "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
   }[ch]));
-
-  if (!data?.length) {
-    container.innerHTML = '<p class="program-empty">No programs published yet. Check back soon.</p>';
-    return;
-  }
-
+  const safeImage = value => {
+    try { const url = new URL(value); return ["https:","http:"].includes(url.protocol) ? url.href : ""; }
+    catch { return ""; }
+  };
   const photos = [
     "https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900",
     "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=900",
     "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900"
   ];
 
-  container.innerHTML = data.map((program, index) => `
-    <article class="program-card">
-      <img src="${photos[index % photos.length]}" alt="${escapeHTML(program.title)}" loading="lazy">
-      <div class="card-content">
-        <span>${escapeHTML(program.category || "TRAINING")} / ${escapeHTML(program.level || "ALL LEVELS")}</span>
-        <h3>${escapeHTML(program.title)}</h3>
-        <p>${escapeHTML(program.description || "")}</p>
-        <small>${Number(program.duration_minutes) || 30} MINUTES</small>
-      </div>
-    </article>
-  `).join("");
+  if (!data?.length) {
+    container.innerHTML = '<p class="program-empty">Training programs are coming soon.</p>';
+    return;
+  }
+
+  container.innerHTML = data.map((program, index) => {
+    const image = safeImage(program.image_url) || photos[index % photos.length];
+    return `
+      <article class="program-card">
+        <a class="program-card-link" href="program.html?id=${encodeURIComponent(program.id)}" aria-label="View ${escapeHTML(program.title)} program">
+          <img src="${escapeHTML(image)}" alt="${escapeHTML(program.title)}" loading="lazy">
+          <div class="card-content">
+            <span>${escapeHTML(program.category || "TRAINING")} / ${escapeHTML(program.level || "ALL LEVELS")}</span>
+            <h3>${escapeHTML(program.title)}</h3>
+            <p>${escapeHTML(program.description || "")}</p>
+            <small>${Number(program.duration_minutes) || 30} MINUTES</small>
+            <b class="program-explore">VIEW PROGRAM DETAILS ↗</b>
+          </div>
+        </a>
+      </article>`;
+  }).join("");
 }
 
 loadPublishedPrograms();
