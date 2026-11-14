@@ -1643,3 +1643,9 @@ header,.site-header,footer{background:#050811;border-color:rgba(67,126,190,.2)}
 button,.nav-btn,.main-btn,.contact a,.bmi-form button,.calorie-form button{box-shadow:0 0 18px var(--iron-red-glow)}
 input:focus,select:focus,textarea:focus{border-color:var(--iron-red)!important;box-shadow:0 0 0 3px rgba(255,38,56,.12)}
 
+
+
+/* IRON FIT crowned emblem */
+.logo{display:flex;align-items:center;text-decoration:none;line-height:0}
+.logo img{display:block;width:190px;height:auto;max-height:66px;object-fit:contain}
+@media(max-width:768px){.logo img{width:145px;max-height:54px}}
