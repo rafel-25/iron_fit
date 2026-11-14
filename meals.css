@@ -13,3 +13,5 @@ a{color:inherit;text-decoration:none}.meal-nav{height:78px;padding:0 6%;display:
 .meal-note{margin-top:30px;color:#8191a6;font-size:11px;line-height:1.7}.empty{grid-column:1/-1;text-align:center;color:#aab8ca;padding:50px}
 footer{text-align:center;padding:28px;background:#050811;border-top:1px solid var(--line);color:#8393a9;font-size:11px;letter-spacing:1px}
 @media(max-width:950px){.meal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.meal-nav{height:auto;min-height:70px;padding:14px 5%;align-items:flex-start;gap:12px;flex-direction:column}nav{gap:16px;flex-wrap:wrap}nav a{font-size:9px}.meal-hero{padding:65px 6% 45px}.meal-library{padding:15px 6% 60px}.meal-grid{grid-template-columns:1fr}.meal-heading h2{font-size:23px}}
+
+.brand{display:flex;align-items:center;line-height:0}.brand img{display:block;width:170px;height:62px;object-fit:contain}@media(max-width:620px){.brand img{width:140px;height:52px}}
