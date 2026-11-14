@@ -1628,3 +1628,18 @@ footer {
 .program-explore{display:block;color:#fff;font-size:10px;letter-spacing:1.2px;margin-top:20px}
 .program-card:hover .program-explore{color:#ff555f}
 .program-empty{grid-column:1/-1;text-align:center;color:#999;padding:30px}
+
+
+/* IRON FIT BLUE / BLACK + NEON RED SIGNATURE */
+:root{--iron-black:#05070c;--iron-panel:#0b1220;--iron-panel-2:#101b2d;--iron-blue:#10284a;--iron-blue-bright:#173b68;--iron-red:#ff2638;--iron-red-glow:rgba(255,38,56,.34)}
+body{background-color:var(--iron-black);background-image:radial-gradient(ellipse at 80% 8%,rgba(17,55,99,.24),transparent 38%);color:#f4f7ff}
+header,.site-header,footer{background:#050811;border-color:rgba(67,126,190,.2)}
+.hero{background-image:linear-gradient(90deg,rgba(4,7,13,.97) 8%,rgba(5,12,24,.84) 48%,rgba(5,12,24,.24)),url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600")}
+.program-card,.nutrition-card,.bmi-box,.calorie-box,.dash-layout,.dash-sidebar,.dash-stat,.dash-panel,.tracker-box{background-color:var(--iron-panel);border-color:rgba(64,116,174,.25)}
+.about,.bmi-section,.calorie-section,.dashboard{background:#070c16}
+.dash-welcome,.welcome-box{background:linear-gradient(115deg,#0d2340,#101a2a 62%,#090e18);border-color:rgba(255,38,56,.4)}
+.side-link:hover,.side-link.active{background:rgba(255,38,56,.12)}
+.program-card:hover,.nutrition-card:hover{border-color:var(--iron-red);box-shadow:0 12px 36px rgba(0,0,0,.35),0 0 18px rgba(255,38,56,.08)}
+button,.nav-btn,.main-btn,.contact a,.bmi-form button,.calorie-form button{box-shadow:0 0 18px var(--iron-red-glow)}
+input:focus,select:focus,textarea:focus{border-color:var(--iron-red)!important;box-shadow:0 0 0 3px rgba(255,38,56,.12)}
+
