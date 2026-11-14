@@ -22,3 +22,5 @@ body{background:radial-gradient(ellipse at 85% 0%,rgba(19,63,112,.28),transparen
 .exercise-video,.video-placeholder{background:#03060b;border-color:#254363}
 footer{border-color:#1b3553;background:#050811}
 
+
+.brand{display:flex;align-items:center;line-height:0}.brand img{display:block;width:170px;height:62px;object-fit:contain}@media(max-width:600px){.brand img{width:140px;height:52px}}
