@@ -1474,3 +1474,141 @@ footer {
     .site-header .nav-login { display: none; }
     .site-header .nav-btn { padding: 11px 12px; font-size: 10px; }
 }
+
+
+/* IRON FIT SIGNATURE NAV — refined premium layout */
+.site-header {
+    padding: 0 clamp(18px, 5.5vw, 88px);
+    background: rgba(8, 9, 11, .96);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    box-shadow: 0 8px 32px rgba(0,0,0,.22);
+}
+.site-header .navbar {
+    min-height: 88px;
+    max-width: 1540px;
+    gap: 30px;
+}
+.site-header .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: 0;
+}
+.site-header .logo-mark {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 950;
+    letter-spacing: -1px;
+    background: linear-gradient(145deg, #f22632, #8d0710);
+    border: 1px solid rgba(255,255,255,.18);
+    clip-path: polygon(0 0, 100% 0, 100% 76%, 76% 100%, 0 100%);
+    box-shadow: 0 5px 20px rgba(229,9,20,.22);
+}
+.site-header .logo-word {
+    display: flex;
+    flex-direction: column;
+    color: #f7f7f7;
+    font-size: 21px;
+    line-height: 1;
+    font-weight: 950;
+    letter-spacing: 2px;
+}
+.site-header .logo-word > span { color: #ed2631; display: inline; }
+.site-header .logo-word i { color: #fff; font-style: normal; }
+.site-header .logo-word small {
+    margin-top: 6px;
+    color: #777;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 2.1px;
+}
+.site-header .nav-links {
+    padding: 7px;
+    gap: 4px;
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 999px;
+    background: rgba(255,255,255,.035);
+}
+.site-header .nav-links a {
+    padding: 12px 16px;
+    color: #a8a8ad;
+    font-size: 10px;
+    letter-spacing: 1.25px;
+    border-radius: 999px;
+    transition: color .2s ease, background .2s ease;
+}
+.site-header .nav-links a::after { display: none; }
+.site-header .nav-links a:hover,
+.site-header .nav-links a.nav-home {
+    color: #fff;
+    background: rgba(229,9,20,.14);
+}
+.site-header .nav-actions { gap: 24px; }
+.site-header .nav-login {
+    color: #c9c9cc;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+}
+.site-header .nav-btn {
+    min-height: 44px;
+    padding: 0 17px;
+    gap: 18px;
+    border-radius: 4px;
+    background: #e51b28;
+    border-color: #e51b28;
+    box-shadow: 0 7px 22px rgba(229,9,20,.17);
+    font-size: 10px;
+    letter-spacing: 1.3px;
+}
+.site-header .nav-btn b {
+    display: grid;
+    place-items: center;
+    width: 23px;
+    height: 23px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 50%;
+}
+.site-header .nav-btn:hover {
+    background: #fff;
+    border-color: #fff;
+    color: #111;
+}
+.site-header .nav-btn:hover b { color: #111; border-color: rgba(0,0,0,.25); }
+@media (max-width: 1100px) {
+    .site-header .navbar { gap: 15px; }
+    .site-header .nav-links a { padding: 11px 10px; }
+}
+@media (max-width: 820px) {
+    .site-header .navbar { min-height: 76px; }
+    .site-header .nav-links {
+        border: 0;
+        border-radius: 0;
+        background: rgba(8,9,11,.99);
+        padding: 12px 6% 20px;
+    }
+    .site-header .nav-links a,
+    .site-header .nav-links a.nav-home {
+        background: transparent;
+        border-radius: 0;
+        padding: 16px 8px;
+    }
+    .site-header .nav-links a:hover { color: #ff4650; }
+    .menu-toggle {
+        border-radius: 4px;
+        background: #151619;
+        border-color: #303136;
+    }
+}
+@media (max-width: 480px) {
+    .site-header .logo-mark { width: 38px; height: 38px; }
+    .site-header .logo-word { font-size: 18px; }
+    .site-header .logo-word small { font-size: 6px; letter-spacing: 1.5px; }
+    .site-header .nav-btn { min-height: 39px; padding: 0 10px; gap: 8px; }
+}
