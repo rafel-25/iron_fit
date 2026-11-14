@@ -1,36 +1,39 @@
 
 function calculateBMI() {
-
-    const weight = Number(document.getElementById("weight").value);
-    const height = Number(document.getElementById("height").value);
-
+    const weightInput = document.getElementById("weight");
+    const heightInput = document.getElementById("height");
     const result = document.getElementById("bmi-result");
 
-    if (weight <= 0 || height <= 0 || !weight || !height) {
-        result.innerHTML = "Please enter valid weight and height.";
+    if (!weightInput || !heightInput || !result) return;
+
+    const weight = Number(weightInput.value);
+    const height = Number(heightInput.value);
+
+    if (weightInput.value.trim() === "" || heightInput.value.trim() === "" ||
+        !Number.isFinite(weight) || weight <= 0 ||
+        !Number.isFinite(height) || height < 50 || height > 250) {
+        result.innerHTML = '<p class="bmi-error" role="alert">Please enter a valid weight and height.</p>';
         return;
     }
 
     const heightInMeters = height / 100;
     const bmi = weight / (heightInMeters * heightInMeters);
 
-    let category = "";
-
-    if (bmi < 18.5) {
-        category = "Underweight";
-    } else if (bmi < 25) {
-        category = "Normal Weight";
-    } else if (bmi < 30) {
-        category = "Overweight";
-    } else {
-        category = "Obesity";
-    }
+    let category;
+    if (bmi < 18.5) category = "Underweight";
+    else if (bmi < 25) category = "Normal Weight";
+    else if (bmi < 30) category = "Overweight";
+    else category = "Obesity";
 
     result.innerHTML = `
         <h3>Your BMI: ${bmi.toFixed(1)}</h3>
         <p>Category: <strong>${category}</strong></p>
+        <p class="bmi-note">BMI is a screening estimate, not a diagnosis.</p>
     `;
 }
+
+// Ensure the HTML button can always call the calculator.
+window.calculateBMI = calculateBMI;
 
 // CALORIE CALCULATOR
 
