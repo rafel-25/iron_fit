@@ -12,6 +12,12 @@ export default defineConfig({
     rollupOptions: {
       input: {
         home: resolve(projectRoot, "index.html"),
+        training: resolve(projectRoot, "training.html"),
+        bmi: resolve(projectRoot, "bmi.html"),
+        calories: resolve(projectRoot, "calories.html"),
+        dashboard: resolve(projectRoot, "dashboard.html"),
+        profile: resolve(projectRoot, "profile.html"),
+        nutrition: resolve(projectRoot, "nutrition.html"),
         login: resolve(projectRoot, "login.html"),
         register: resolve(projectRoot, "register.html"),
         program: resolve(projectRoot, "program.html"),
