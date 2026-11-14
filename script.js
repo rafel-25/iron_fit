@@ -42,6 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // CALORIE CALCULATOR
 
+window.calculateCalories = calculateCalories;
+
+document.addEventListener("DOMContentLoaded", () => {
+    const caloriesButton = document.getElementById("calculate-calories-btn");
+    if (caloriesButton) caloriesButton.addEventListener("click", calculateCalories);
+});
+
 function calculateCalories() {
 
     const gender = document.getElementById("gender").value;
