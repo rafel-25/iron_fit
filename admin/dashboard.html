@@ -15,7 +15,7 @@
 <label class="full">How to perform it<textarea id="eDescription" required maxlength="1000" placeholder="Explain the correct movement and technique…"></textarea></label>
 <label>Equipment<input id="eEquipment" placeholder="Dumbbells, barbell, cable…"></label>
 <label>Difficulty<select id="eDifficulty"><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select></label>
-<label class="full">Animated demo video URL (MP4)<input id="eVideo" type="url" placeholder="https://…/exercise.mp4"></label><label class="full">Video poster image URL (optional)<input id="ePoster" type="url" placeholder="https://…/poster.jpg"></label><label class="full">Exercise steps (one step per line)<textarea id="eSteps" placeholder="Step 1…&#10;Step 2…"></textarea></label>
+<label class="full">Animated demo video URL (MP4)<input id="eVideo" type="url" required placeholder="https://…/exercise.mp4"></label><label class="full">Video poster image URL (optional)<input id="ePoster" type="url" placeholder="https://…/poster.jpg"></label><label class="full">Exercise steps (one step per line)<textarea id="eSteps" placeholder="Step 1…&#10;Step 2…"></textarea></label>
 <button class="full" id="addExercise" type="submit">+ ADD EXERCISE</button>
 </form><p id="adminMessage" class="msg" aria-live="polite"></p></section>
 <section class="section"><h2>EXERCISE LIBRARY</h2><p class="muted">Delete an exercise to remove it from the public library.</p><div id="exerciseList" class="list"><p class="empty">Loading exercises…</p></div></section>
