@@ -1,0 +1,4 @@
+import {supabase} from "../lib/supabase.js";
+import {msg} from "./common.js";
+const form=document.querySelector("#loginForm"),box=document.querySelector("#message"),emailInput=document.querySelector("#email"),passwordInput=document.querySelector("#password");
+form.addEventListener("submit",async e=>{e.preventDefault();const {data,error}=await supabase.auth.signInWithPassword({email:emailInput.value.trim(),password:passwordInput.value});if(error){msg(box,error.message);return;}const {data:p,error:pe}=await supabase.from("profiles").select("role,is_active").eq("id",data.user.id).single();if(pe||!p?.is_active){await supabase.auth.signOut();msg(box,"Account is disabled or profile is unavailable.");return;}location.href=p.role==="admin"?"admin/dashboard.html":"user/dashboard.html";});
