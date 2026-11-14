@@ -1,0 +1,4 @@
+import {supabase} from "../lib/supabase.js";
+import {msg} from "./common.js";
+const form=document.querySelector("#registerForm"),box=document.querySelector("#message");
+form.addEventListener("submit",async e=>{e.preventDefault();const username=document.querySelector("#username").value.trim();const email=document.querySelector("#email").value.trim();const password=document.querySelector("#password").value;const {data,error}=await supabase.auth.signUp({email,password,options:{data:{username}}});if(error){msg(box,error.message);return;}msg(box,"Account created. Check your email if confirmation is enabled, then sign in.",false);form.reset();});
