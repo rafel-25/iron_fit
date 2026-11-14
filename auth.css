@@ -8,3 +8,16 @@
 .program-admin-item{margin:12px 0}
 #workouts .item>strong{font-size:16px}
 #workouts .item p{line-height:1.6}
+
+
+/* IRON FIT BLUE / BLACK + NEON RED */
+:root{--bg:#05070c;--panel:#0b1423;--line:#1e3858;--red:#ff2638}
+body{background-color:#05070c;background-image:radial-gradient(ellipse at 15% 10%,rgba(18,61,111,.34),transparent 40%),radial-gradient(ellipse at 90% 90%,rgba(255,38,56,.07),transparent 35%)}
+.auth-card,.panel{background:linear-gradient(145deg,#0d192a,#080e18);border-color:#1e3858;box-shadow:0 24px 80px #0009,0 0 28px rgba(25,77,132,.08)}
+.top{background:rgba(5,9,17,.96);border-color:#1e3858}
+.stats article,.content-card{background:#091322;border-color:#1e3858}
+input,select,textarea{background:#060c16!important;border-color:#294361!important}
+input:focus,select:focus,textarea:focus{border-color:#ff2638!important;box-shadow:0 0 0 3px rgba(255,38,56,.12)}
+button,.action{background:#ff2638;box-shadow:0 0 16px rgba(255,38,56,.2)}
+button:hover,.action:hover{background:#d91d2d}
+
