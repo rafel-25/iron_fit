@@ -1,0 +1,4 @@
+import { supabase } from "../lib/supabase.js";
+export async function requireProfile(){const {data:{user}}=await supabase.auth.getUser();if(!user){location.href="../login.html";return null;}const {data:profile,error}=await supabase.from("profiles").select("id,username,role,is_active,created_at").eq("id",user.id).single();if(error||!profile||!profile.is_active){await supabase.auth.signOut();location.href="../login.html";return null;}return {user,profile};}
+export async function logout(){await supabase.auth.signOut();location.href="../login.html";}
+export function msg(el,text,error=true){el.textContent=text;el.className=error?"alert":"success";}
