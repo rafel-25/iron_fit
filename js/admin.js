@@ -1,69 +1,21 @@
-import { supabase } from "../lib/supabase.js";
-import { requireProfile, logout } from "./common.js";
-const $ = s => document.querySelector(s);
-const esc = value => String(value ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-$("#logout")?.addEventListener("click",logout);
-const ctx=await requireProfile();
-if(ctx && ctx.profile.role!=="admin") location.replace("../user/dashboard.html");
-if(ctx?.profile.role==="admin"){
-  $("#welcome").textContent="Signed in as "+ctx.profile.username;
-  await refresh();
-}
-function notify(text,ok=false){
-  const el=$("#adminMessage");if(!el)return;
-  el.textContent=text;el.className="msg "+(ok?"success":"error");
-}
+import {supabase} from "../lib/supabase.js";
+import {requireProfile,logout} from "./common.js";
+const $=s=>document.querySelector(s),esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+$("#logout")?.addEventListener("click",logout);const ctx=await requireProfile();if(ctx&&ctx.profile.role!=="admin")location.replace("../user/dashboard.html");
+function notify(t,ok=false){const el=$("#adminMessage");if(el){el.textContent=t;el.className="msg "+(ok?"success":"error");}}
+if(ctx?.profile.role==="admin"){$("#welcome").textContent="Signed in as "+ctx.profile.username;await refresh();}
 async function refresh(){
-  const [m,x]=await Promise.all([
-    supabase.from("profiles").select("id,username,created_at").eq("role","user").eq("is_active",true).order("created_at",{ascending:false}),
-    supabase.from("exercises").select("id,title,category,description,equipment,difficulty,video_url").order("category").order("title")
-  ]);
-  if(m.error||x.error){notify((m.error||x.error).message);return;}
-  const members=m.data||[], exercises=x.data||[];
-  $("#membersCount").textContent=members.length;
-  $("#exerciseCount").textContent=exercises.length;
-  $("#members").innerHTML=members.map(member=>`
-    <article class="item"><div><strong>${esc(member.username)}</strong><p>Joined ${new Date(member.created_at).toLocaleDateString()}</p></div><button data-action="remove-member" data-id="${member.id}">REMOVE MEMBER</button></article>
-  `).join("")||'<p class="empty">No active members right now.</p>';
-  $("#exerciseList").innerHTML=exercises.map(ex=>`
-    <article class="item"><div><strong>${esc(ex.title)}</strong><p>${esc(ex.category)} · ${esc(ex.equipment||"Bodyweight")} · ${esc(ex.difficulty)} · ${ex.video_url?"Video ready":"No video"}</p></div><button data-action="delete-exercise" data-id="${ex.id}">DELETE</button></article>
-  `).join("")||'<p class="empty">No exercises yet.</p>';
+ const [m,x,w,p]=await Promise.all([supabase.from("profiles").select("id,username,created_at").eq("role","user").eq("is_active",true).order("created_at",{ascending:false}),supabase.from("exercises").select("id,title,category,equipment,difficulty,video_url").order("category").order("title"),supabase.from("workouts").select("id,title,category,level,duration_minutes").order("created_at",{ascending:false}),supabase.from("nutrition_plans").select("id,title,goal,calories,protein_g,carbs_g,fat_g").order("created_at",{ascending:false})]);
+ const err=[m,x,w,p].find(q=>q.error);if(err){notify(err.error.message);return;}
+ $("#membersCount").textContent=(m.data||[]).length;$("#exerciseCount").textContent=(x.data||[]).length;
+ $("#members").innerHTML=(m.data||[]).map(v=>'<article class="item"><div><strong>'+esc(v.username)+'</strong><p>Joined '+new Date(v.created_at).toLocaleDateString()+'</p></div><button data-action="remove-member" data-id="'+v.id+'">REMOVE MEMBER</button></article>').join("")||'<p class="empty">No active members.</p>';
+ $("#exerciseList").innerHTML=(x.data||[]).map(v=>'<article class="item"><div><strong>'+esc(v.title)+'</strong><p>'+esc(v.category)+' · '+esc(v.equipment||"Bodyweight")+' · '+esc(v.difficulty)+' · '+(v.video_url?"Video ready":"No video")+'</p></div><div><button data-action="edit-exercise" data-id="'+v.id+'">EDIT</button> <button data-action="delete-exercise" data-id="'+v.id+'">DELETE</button></div></article>').join("")||'<p class="empty">No exercises yet.</p>';
+ $("#workoutAdminList").innerHTML=(w.data||[]).map(v=>'<article class="item"><div><strong>'+esc(v.title)+'</strong><p>'+esc(v.category)+' · '+esc(v.level)+' · '+v.duration_minutes+' min</p></div><button data-action="delete-workout" data-id="'+v.id+'">DELETE</button></article>').join("")||'<p class="empty">No programs yet.</p>';
+ $("#planAdminList").innerHTML=(p.data||[]).map(v=>'<article class="item"><div><strong>'+esc(v.title)+'</strong><p>'+esc(v.goal)+' · '+v.calories+' kcal · P '+v.protein_g+'g / C '+v.carbs_g+'g / F '+v.fat_g+'g</p></div><button data-action="delete-plan" data-id="'+v.id+'">DELETE</button></article>').join("")||'<p class="empty">No nutrition plans yet.</p>';
 }
-$("#exerciseForm").addEventListener("submit",async event=>{
-  event.preventDefault();
-  const button=$("#addExercise");button.disabled=true;
-  const row={
-    title:$("#eTitle").value.trim(),
-    category:$("#eCategory").value,
-    description:$("#eDescription").value.trim(),
-    equipment:$("#eEquipment").value.trim()||null,
-    difficulty:$("#eDifficulty").value,
-    video_url:$("#eVideo").value.trim()||null,
-    poster_url:$("#ePoster").value.trim()||null,
-    steps:$("#eSteps").value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean)
-  };
-  if(!row.title||!row.description||!row.video_url){button.disabled=false;return notify("Add an exercise name, explanation and MP4 video URL.");}
-  for(const value of [row.video_url,row.poster_url].filter(Boolean)){try{const u=new URL(value);if(!["https:","http:"].includes(u.protocol))throw new Error();}catch{button.disabled=false;return notify("Enter valid http or https media URLs.");}}
-  const {error}=await supabase.from("exercises").insert(row);
-  button.disabled=false;
-  if(error)return notify(error.message);
-  event.target.reset();$("#eCategory").value="Chest";$("#eDifficulty").value="Beginner";
-  notify("Exercise added to the library.",true);
-  await refresh();
-});
-document.addEventListener("click",async event=>{
-  const button=event.target.closest("button[data-action]");if(!button)return;
-  const id=button.dataset.id;
-  if(button.dataset.action==="remove-member"){
-    if(!confirm("Remove this member and disable their IRON FIT access?"))return;
-    const {error}=await supabase.from("profiles").update({is_active:false}).eq("id",id).eq("role","user");
-    if(error)return notify(error.message);
-    notify("Member access disabled.",true);return refresh();
-  }
-  if(button.dataset.action==="delete-exercise"){
-    if(!confirm("Delete this exercise from the public library?"))return;
-    const {error}=await supabase.from("exercises").delete().eq("id",id);
-    if(error)return notify(error.message);
-    notify("Exercise deleted.",true);return refresh();
-  }
-});
+$("#exerciseForm").addEventListener("submit",async e=>{e.preventDefault();const b=$("#addExercise");b.disabled=true;const row={title:$("#eTitle").value.trim(),category:$("#eCategory").value,description:$("#eDescription").value.trim(),equipment:$("#eEquipment").value.trim()||null,difficulty:$("#eDifficulty").value,video_url:$("#eVideo").value.trim()||null,poster_url:$("#ePoster").value.trim()||null,steps:$("#eSteps").value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean)};const {error}=await supabase.from("exercises").insert(row);b.disabled=false;if(error)return notify(error.message);e.target.reset();notify("Exercise added.",true);await refresh();});
+$("#workoutForm").addEventListener("submit",async e=>{e.preventDefault();const b=e.submitter;b.disabled=true;const {error}=await supabase.from("workouts").insert({title:$("#wTitle").value.trim(),category:$("#wCategory").value.trim(),level:$("#wLevel").value,duration_minutes:Number($("#wDuration").value),description:$("#wDescription").value.trim()||null});b.disabled=false;if(error)return notify(error.message);e.target.reset();notify("Workout program added.",true);await refresh();});
+$("#planForm").addEventListener("submit",async e=>{e.preventDefault();const b=e.submitter;b.disabled=true;const {error}=await supabase.from("nutrition_plans").insert({title:$("#pTitle").value.trim(),goal:$("#pGoal").value,calories:Number($("#pCalories").value),protein_g:Number($("#pProtein").value),carbs_g:Number($("#pCarbs").value),fat_g:Number($("#pFat").value),description:$("#pDescription").value.trim()||null});b.disabled=false;if(error)return notify(error.message);e.target.reset();notify("Nutrition plan added.",true);await refresh();});
+document.addEventListener("click",async e=>{const b=e.target.closest("button[data-action]");if(!b)return;const id=b.dataset.id,act=b.dataset.action;if(act==="remove-member"){if(!confirm("Disable this member's access?"))return;const {error}=await supabase.from("profiles").update({is_active:false}).eq("id",id).eq("role","user");if(error)return notify(error.message);notify("Member access disabled.",true);}
+else if(act==="edit-exercise"){const title=prompt("Exercise title:");if(title===null)return;const description=prompt("Exercise description:");if(description===null)return;const {error}=await supabase.from("exercises").update({title:title.trim(),description:description.trim()}).eq("id",id);if(error)return notify(error.message);notify("Exercise updated.",true);}
+else {if(!confirm("Delete this item?"))return;const table=act==="delete-exercise"?"exercises":act==="delete-workout"?"workouts":"nutrition_plans";const {error}=await supabase.from(table).delete().eq("id",id);if(error)return notify(error.message);notify("Item deleted.",true);}await refresh();});
