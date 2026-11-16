@@ -40,6 +40,7 @@ async function loadProgram() {
           <span><b>${escapeHTML(item.reps)}</b><small>REPS</small></span>
           <span><b>${item.rest_seconds}s</b><small>REST</small></span>
         </div>
+        <a class="exercise-details-link" href="exercises.html?search=${encodeURIComponent(item.title)}">OPEN EXERCISE &amp; VIDEO ↗</a>
       </div>
     </article>`).join("") || '<div class="empty-state"><h3>EXERCISES COMING SOON</h3><p>This program has no exercises yet. Check back soon.</p></div>';
 }
