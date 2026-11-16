@@ -3,7 +3,7 @@ const $ = s => document.querySelector(s);
 const categories = ["All","Chest","Back","Legs","Calves","Shoulders","Arms","Abs"];
 let exercises = [];
 let selected = "All";
-let query = "";
+let query = new URLSearchParams(location.search).get("search")?.trim().toLowerCase() || "";
 const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function safeUrl(value){
   try{const url=new URL(value);return ["https:","http:"].includes(url.protocol)?url.href:"";}catch{return "";}
@@ -38,6 +38,18 @@ async function init(){
   const {data,error}=await supabase.from("exercises").select("id,title,category,description,equipment,difficulty,video_url,poster_url,instructions,steps,form_cues,common_mistakes,breathing,target").order("category").order("title");
   if(error){$("#exerciseGrid").innerHTML='<p class="empty error">Could not load the exercise library. Please refresh the page.</p>';return;}
   exercises=data||[];render();
+  if(query){
+    const match=exercises.find(x=>String(x.title||"").toLowerCase()===query)
+      || exercises.find(x=>String(x.title||"").toLowerCase().includes(query));
+    if(match){
+      selected=match.category;
+      $("#categoryTabs").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.category===selected));
+      render();
+      const card=[...$("#exerciseGrid").querySelectorAll(".exercise-card")].find(el=>el.querySelector("h3")?.textContent===match.title);
+      card?.querySelector("details")?.setAttribute("open","");
+      card?.scrollIntoView({behavior:"smooth",block:"center"});
+    }
+  }
 }
 $("#categoryTabs").addEventListener("click",e=>{
   const button=e.target.closest("button[data-category]");if(!button)return;
@@ -45,5 +57,7 @@ $("#categoryTabs").addEventListener("click",e=>{
   $("#categoryTabs").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b===button));
   render();
 });
-$("#exerciseSearch").addEventListener("input",e=>{query=e.target.value.trim().toLowerCase();render();});
+const searchInput=$("#exerciseSearch");
+searchInput.value=query;
+searchInput.addEventListener("input",e=>{query=e.target.value.trim().toLowerCase();render();});
 init();
