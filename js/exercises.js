@@ -22,7 +22,7 @@ function render(){
         <div class="exercise-top"><span class="tag">${escapeHTML(x.category)}</span><span class="difficulty">${escapeHTML(x.difficulty||"Beginner")}</span></div>
         <h3>${escapeHTML(x.title)}</h3>
         <p>${escapeHTML(x.description)}</p>
-        ${video?`<video class="exercise-video" controls playsinline preload="none" poster="${escapeHTML(poster)}"><source src="${escapeHTML(video)}" type="video/mp4">Your browser does not support video.</video>`:'<div class="video-placeholder">DEMO VIDEO COMING SOON</div>'}
+        ${video?`<video class="exercise-video" autoplay muted loop playsinline preload="none" data-video-src="${escapeHTML(video)}" poster="${escapeHTML(poster)}" aria-label="${escapeHTML(x.title)} demonstration"></video>`:'<div class="video-placeholder">DEMO VIDEO COMING SOON</div>'}
         <div class="equipment">EQUIPMENT · ${escapeHTML(x.equipment||"Bodyweight")}</div>
         <details class="exercise-guide"><summary>HOW TO PERFORM</summary>
           ${x.instructions?`<p>${escapeHTML(x.instructions)}</p>`:""}
@@ -38,6 +38,29 @@ async function init(){
   const {data,error}=await supabase.from("exercises").select("id,title,category,description,equipment,difficulty,video_url,poster_url,instructions,steps,form_cues,common_mistakes,breathing,target").order("category").order("title");
   if(error){$("#exerciseGrid").innerHTML='<p class="empty error">Could not load the exercise library. Please refresh the page.</p>';return;}
   exercises=data||[];render();
+  // Load exercise demos only near the viewport, then play them silently in a GIF-like loop.
+  const videos=[...document.querySelectorAll("video.exercise-video[data-video-src]")];
+  const loadVideo=video=>{
+    if(video.dataset.loaded==="true")return;
+    video.dataset.loaded="true";
+    video.src=video.dataset.videoSrc;
+    video.load();
+    const play=()=>video.play().catch(()=>{});
+    if(video.readyState>=2)play();else video.addEventListener("canplay",play,{once:true});
+  };
+  if("IntersectionObserver" in window){
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          loadVideo(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },{rootMargin:"250px 0px"});
+    videos.forEach(video=>observer.observe(video));
+  }else{
+    videos.forEach(loadVideo);
+  }
   if(query){
     const match=exercises.find(x=>String(x.title||"").toLowerCase()===query)
       || exercises.find(x=>String(x.title||"").toLowerCase().includes(query));
