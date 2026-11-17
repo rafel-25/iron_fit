@@ -61,22 +61,23 @@ html,body{width:100%;min-width:320px;overflow-x:hidden}
 }
 
 
-/* IRON FIT logo inside the exercise search field */
+/* Visible IRON FIT wordmark inside the exercise search field */
 .search-wrap{position:relative}
 .search-wrap::before{
  content:"";
  position:absolute;
- left:13px;
+ z-index:2;
+ left:14px;
  top:50%;
  transform:translateY(-50%);
- width:34px;
+ width:94px;
  height:30px;
- background:url("assets/iron-fit-logo.svg") center/contain no-repeat;
+ background:url("assets/iron-fit-logo.svg") left center/contain no-repeat;
  pointer-events:none;
- opacity:.95;
+ opacity:1;
 }
-.search-wrap input{padding-left:58px}
+.search-wrap input{padding-left:120px}
 @media(max-width:600px){
- .search-wrap::before{left:11px;width:30px;height:27px}
- .search-wrap input{padding-left:50px}
+ .search-wrap::before{left:11px;width:82px;height:27px}
+ .search-wrap input{padding-left:104px}
 }
