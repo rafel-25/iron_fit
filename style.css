@@ -36,7 +36,7 @@ header {
 }
 
 .logo span {
-    color: #e50914;
+    color: #087bff;
 }
 
 .nav-links {
@@ -53,11 +53,11 @@ header {
 }
 
 .nav-links a:hover {
-    color: #e50914;
+    color: #087bff;
 }
 
 .nav-btn {
-    background: #e50914;
+    background: #087bff;
     color: white;
     text-decoration: none;
     padding: 12px 25px;
@@ -68,7 +68,7 @@ header {
 .nav-btn:hover,
 .main-btn:hover {
     background: white;
-    color: #e50914;
+    color: #087bff;
 }
 
 /* HERO */
@@ -95,7 +95,7 @@ header {
 }
 
 .hero h1 span {
-    color: #e50914;
+    color: #087bff;
 }
 
 .hero p {
@@ -107,7 +107,7 @@ header {
 
 .main-btn {
     display: inline-block;
-    background: #e50914;
+    background: #087bff;
     color: white;
     text-decoration: none;
     padding: 16px 35px;
@@ -135,7 +135,7 @@ header {
     display: block;
     width: 65px;
     height: 4px;
-    background: #e50914;
+    background: #087bff;
     margin: 15px auto;
 }
 
@@ -148,7 +148,7 @@ header {
 .program-card {
     background: #151515;
     padding: 50px 25px;
-    border-bottom: 3px solid #e50914;
+    border-bottom: 3px solid #087bff;
     transition: 0.3s;
 }
 
@@ -192,7 +192,7 @@ header {
 .contact a {
     display: inline-block;
     color: white;
-    background: #e50914;
+    background: #087bff;
     text-decoration: none;
     padding: 15px 35px;
     font-weight: bold;
@@ -201,7 +201,7 @@ header {
 
 .contact a:hover {
     background: white;
-    color: #e50914;
+    color: #087bff;
 }
 
 /* FOOTER */
@@ -251,7 +251,7 @@ footer {
 }
 
 .section-title > span {
-    color: #e50914;
+    color: #087bff;
     font-size: 13px;
     letter-spacing: 4px;
     font-weight: bold;
@@ -263,7 +263,7 @@ footer {
 }
 
 .section-title h2 span {
-    color: #e50914;
+    color: #087bff;
 }
 
 .section-title p {
@@ -281,7 +281,7 @@ footer {
     padding: 0;
     background: #151515;
     overflow: hidden;
-    border-bottom: 3px solid #e50914;
+    border-bottom: 3px solid #087bff;
     transition: 0.4s;
     text-align: left;
 }
@@ -307,7 +307,7 @@ footer {
 }
 
 .card-content span {
-    color: #e50914;
+    color: #087bff;
     font-size: 12px;
     letter-spacing: 2px;
 }
@@ -332,7 +332,7 @@ footer {
 }
 
 .card-content a:hover {
-    color: #e50914;
+    color: #087bff;
 }
 
 /* BMI CALCULATOR */
@@ -372,12 +372,12 @@ footer {
 }
 
 .bmi-form input:focus {
-    border-color: #e50914;
+    border-color: #087bff;
 }
 
 .bmi-form button {
     padding: 16px;
-    background: #e50914;
+    background: #087bff;
     border: none;
     color: white;
     font-weight: bold;
@@ -388,7 +388,7 @@ footer {
 
 .bmi-form button:hover {
     background: white;
-    color: #e50914;
+    color: #087bff;
 }
 
 #bmi-result {
@@ -436,11 +436,11 @@ footer {
 
 .nutrition-card:hover {
     transform: translateY(-8px);
-    border-color: #e50914;
+    border-color: #087bff;
 }
 
 .nutrition-card.featured {
-    border-color: #e50914;
+    border-color: #087bff;
     background: #1c1111;
 }
 
@@ -471,7 +471,7 @@ footer {
 
 .nutrition-card li::before {
     content: "✓";
-    color: #e50914;
+    color: #087bff;
     margin-right: 10px;
 }
 
@@ -515,12 +515,12 @@ footer {
 
 .calorie-form input:focus,
 .calorie-form select:focus {
-    border-color: #e50914;
+    border-color: #087bff;
 }
 
 .calorie-form button {
     padding: 16px;
-    background: #e50914;
+    background: #087bff;
     border: none;
     color: white;
     font-weight: bold;
@@ -531,7 +531,7 @@ footer {
 
 .calorie-form button:hover {
     background: white;
-    color: #e50914;
+    color: #087bff;
 }
 
 #calorie-result {
@@ -542,7 +542,7 @@ footer {
 }
 
 #calorie-result h3 {
-    color: #e50914;
+    color: #087bff;
     font-size: 27px;
     margin-bottom: 10px;
 }
@@ -577,13 +577,13 @@ footer {
     align-items: center;
     padding: 35px;
     background: linear-gradient(120deg, #251010, #151515);
-    border-left: 4px solid #e50914;
+    border-left: 4px solid #087bff;
     border-radius: 8px;
     margin-bottom: 25px;
 }
 
 .welcome-box span {
-    color: #e50914;
+    color: #087bff;
     font-size: 12px;
     letter-spacing: 3px;
 }
@@ -622,7 +622,7 @@ footer {
 }
 
 .stat-card h2 {
-    color: #e50914;
+    color: #087bff;
     font-size: 35px;
     margin: 15px 0 8px;
 }
@@ -647,7 +647,7 @@ footer {
 }
 
 .tracker-header span {
-    color: #e50914;
+    color: #087bff;
     font-size: 12px;
 }
 
@@ -662,7 +662,7 @@ footer {
 #progress-fill {
     width: 0%;
     height: 100%;
-    background: #e50914;
+    background: #087bff;
     transition: width 0.4s;
 }
 
@@ -682,7 +682,7 @@ footer {
 }
 
 .exercise-item input {
-    accent-color: #e50914;
+    accent-color: #087bff;
     width: 18px;
     height: 18px;
     cursor: pointer;
@@ -706,14 +706,14 @@ footer {
     margin-top: 25px;
     padding: 13px 25px;
     background: transparent;
-    border: 1px solid #e50914;
+    border: 1px solid #087bff;
     color: white;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .reset-btn:hover {
-    background: #e50914;
+    background: #087bff;
 }
 
 @media (max-width: 768px) {
@@ -765,7 +765,7 @@ footer {
 }
 
 .dash-logo span {
-    color: #e50914;
+    color: #087bff;
 }
 
 .side-label {
@@ -790,7 +790,7 @@ footer {
 .side-link.active {
     background: #261011;
     color: white;
-    border-left: 3px solid #e50914;
+    border-left: 3px solid #087bff;
 }
 
 .sidebar-bottom {
@@ -813,7 +813,7 @@ footer {
 
 .dash-subtitle {
     font-size: 11px;
-    color: #e50914;
+    color: #087bff;
     letter-spacing: 3px;
 }
 
@@ -833,7 +833,7 @@ footer {
     height: 42px;
     display: grid;
     place-items: center;
-    background: #e50914;
+    background: #087bff;
     border-radius: 50%;
     font-weight: bold;
 }
@@ -869,7 +869,7 @@ footer {
 }
 
 .dash-welcome span {
-    color: #e50914;
+    color: #087bff;
     font-size: 11px;
     letter-spacing: 2px;
 }
@@ -898,7 +898,7 @@ footer {
 }
 
 .dash-welcome a:hover {
-    color: #e50914;
+    color: #087bff;
 }
 
 .welcome-emoji {
@@ -929,7 +929,7 @@ footer {
 
 .dash-stat h2 {
     font-size: 32px;
-    color: #e50914;
+    color: #087bff;
     margin: 15px 0 5px;
 }
 
@@ -962,7 +962,7 @@ footer {
 
 .panel-heading span {
     font-size: 10px;
-    color: #e50914;
+    color: #087bff;
     letter-spacing: 2px;
 }
 
@@ -993,7 +993,7 @@ footer {
 }
 
 #progress-text {
-    color: #e50914;
+    color: #087bff;
 }
 
 .progress-track {
@@ -1004,7 +1004,7 @@ footer {
 }
 
 #progress-fill {
-    background: #e50914;
+    background: #087bff;
     height: 100%;
     width: 0%;
     transition: 0.4s;
@@ -1023,7 +1023,7 @@ footer {
 }
 
 .exercise-item input {
-    accent-color: #e50914;
+    accent-color: #087bff;
     width: 17px;
     height: 17px;
 }
@@ -1048,7 +1048,7 @@ footer {
 
 .reset-btn {
     background: transparent;
-    border: 1px solid #e50914;
+    border: 1px solid #087bff;
     color: white;
     padding: 12px 20px;
     margin-top: 22px;
@@ -1058,7 +1058,7 @@ footer {
 }
 
 .reset-btn:hover {
-    background: #e50914;
+    background: #087bff;
 }
 
 /* WEEKLY ACTIVITY */
@@ -1087,7 +1087,7 @@ footer {
     width: 100%;
     max-width: 28px;
     min-height: 5px;
-    background: linear-gradient(180deg, #ff303b, #a40009);
+    background: linear-gradient(180deg, #168bff, #a40009);
     border-radius: 5px 5px 0 0;
     transition: 0.3s;
 }
@@ -1108,18 +1108,18 @@ footer {
 }
 
 .activity-note span {
-    color: #e50914;
+    color: #087bff;
 }
 
 .motivation {
     margin-top: 35px;
     padding: 22px;
     background: #260e10;
-    border-left: 3px solid #e50914;
+    border-left: 3px solid #087bff;
 }
 
 .motivation span {
-    color: #e50914;
+    color: #087bff;
     font-size: 10px;
     letter-spacing: 2px;
 }
@@ -1204,7 +1204,7 @@ footer {
 }
 
 .section-title span {
-    color: #ff3030;
+    color: #168bff;
     font-weight: bold;
     letter-spacing: 2px;
 }
@@ -1240,7 +1240,7 @@ footer {
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: #ff3030;
+    background: #168bff;
     color: white;
     font-size: 23px;
     font-weight: bold;
@@ -1284,13 +1284,13 @@ footer {
 
 .form-group input:focus,
 .form-group select:focus {
-    border-color: #ff3030;
+    border-color: #168bff;
 }
 
 .save-profile-btn {
     margin-top: 25px;
     padding: 14px 28px;
-    background: #ff3030;
+    background: #168bff;
     color: white;
     border: none;
     border-radius: 8px;
@@ -1350,7 +1350,7 @@ footer {
     font-weight: 950;
     letter-spacing: 2px;
 }
-.site-header .logo span { color: #e50914; }
+.site-header .logo span { color: #087bff; }
 .site-header .logo i { color: #fff; font-style: normal; }
 .site-header .nav-links {
     display: flex;
@@ -1380,7 +1380,7 @@ footer {
     bottom: 4px;
     width: 0;
     height: 2px;
-    background: #e50914;
+    background: #087bff;
     transition: width .25s ease;
 }
 .site-header .nav-links a:hover { color: #fff; }
@@ -1398,19 +1398,19 @@ footer {
     font-weight: 700;
     transition: color .2s ease;
 }
-.site-header .nav-login:hover { color: #e50914; }
+.site-header .nav-login:hover { color: #087bff; }
 .site-header .nav-btn {
     display: inline-flex;
     align-items: center;
     gap: 13px;
     padding: 13px 19px;
-    background: #e50914;
+    background: #087bff;
     color: #fff;
     text-decoration: none;
     font-size: 11px;
     font-weight: 900;
     letter-spacing: 1px;
-    border: 1px solid #e50914;
+    border: 1px solid #087bff;
     transition: background .25s ease, color .25s ease, transform .25s ease;
 }
 .site-header .nav-btn span { font-size: 16px; }
@@ -1503,7 +1503,7 @@ footer {
     font-size: 13px;
     font-weight: 950;
     letter-spacing: -1px;
-    background: linear-gradient(145deg, #f22632, #8d0710);
+    background: linear-gradient(145deg, #168bff, #8d0710);
     border: 1px solid rgba(255,255,255,.18);
     clip-path: polygon(0 0, 100% 0, 100% 76%, 76% 100%, 0 100%);
     box-shadow: 0 5px 20px rgba(229,9,20,.22);
@@ -1517,7 +1517,7 @@ footer {
     font-weight: 950;
     letter-spacing: 2px;
 }
-.site-header .logo-word > span { color: #ed2631; display: inline; }
+.site-header .logo-word > span { color: #168bff; display: inline; }
 .site-header .logo-word i { color: #fff; font-style: normal; }
 .site-header .logo-word small {
     margin-top: 6px;
@@ -1558,8 +1558,8 @@ footer {
     padding: 0 17px;
     gap: 18px;
     border-radius: 4px;
-    background: #e51b28;
-    border-color: #e51b28;
+    background: #006de5;
+    border-color: #006de5;
     box-shadow: 0 7px 22px rgba(229,9,20,.17);
     font-size: 10px;
     letter-spacing: 1.3px;
@@ -1599,7 +1599,7 @@ footer {
         border-radius: 0;
         padding: 16px 8px;
     }
-    .site-header .nav-links a:hover { color: #ff4650; }
+    .site-header .nav-links a:hover { color: #39a0ff; }
     .menu-toggle {
         border-radius: 4px;
         background: #151619;
@@ -1621,17 +1621,17 @@ footer {
 .program-card img{display:block;width:100%;height:210px;object-fit:cover;transition:transform .45s}
 .program-card:hover img{transform:scale(1.04)}
 .program-card .card-content{padding:24px}
-.program-card .card-content>span{display:block;color:#ff555f;font-size:10px;font-weight:800;letter-spacing:1.4px;margin-bottom:12px}
+.program-card .card-content>span{display:block;color:#39a0ff;font-size:10px;font-weight:800;letter-spacing:1.4px;margin-bottom:12px}
 .program-card h3{margin:0 0 12px;font-size:21px}
 .program-card p{min-height:48px;font-size:13px;margin-bottom:14px}
 .program-card small{color:#aaa;font-size:10px;letter-spacing:1px}
 .program-explore{display:block;color:#fff;font-size:10px;letter-spacing:1.2px;margin-top:20px}
-.program-card:hover .program-explore{color:#ff555f}
+.program-card:hover .program-explore{color:#39a0ff}
 .program-empty{grid-column:1/-1;text-align:center;color:#999;padding:30px}
 
 
 /* IRON FIT BLUE / BLACK + NEON RED SIGNATURE */
-:root{--iron-black:#05070c;--iron-panel:#0b1220;--iron-panel-2:#101b2d;--iron-blue:#10284a;--iron-blue-bright:#173b68;--iron-red:#ff2638;--iron-red-glow:rgba(255,38,56,.34)}
+:root{--iron-black:#05070c;--iron-panel:#0b1220;--iron-panel-2:#101b2d;--iron-blue:#10284a;--iron-blue-bright:#173b68;--iron-red:#087bff;--iron-red-glow:rgba(0,123,255,.34)}
 body{background-color:var(--iron-black);background-image:radial-gradient(ellipse at 80% 8%,rgba(17,55,99,.24),transparent 38%);color:#f4f7ff}
 header,.site-header,footer{background:#050811;border-color:rgba(67,126,190,.2)}
 .hero{background-image:linear-gradient(90deg,rgba(4,7,13,.97) 8%,rgba(5,12,24,.84) 48%,rgba(5,12,24,.24)),url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600")}
