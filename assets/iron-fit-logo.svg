@@ -2,7 +2,7 @@
 <title id="title">IRON FIT</title><desc id="desc">IRON FIT crowned barbell logo in silver and red.</desc>
 <defs>
   <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff"/><stop offset=".45" stop-color="#d5dbe3"/><stop offset="1" stop-color="#7e8793"/></linearGradient>
-  <linearGradient id="red" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff404b"/><stop offset="1" stop-color="#d90020"/></linearGradient>
+  <linearGradient id="red" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#087bff"/><stop offset="1" stop-color="#d90020"/></linearGradient>
   <filter id="shine" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
 </defs>
 <g transform="translate(20 34)" stroke-linecap="round">
@@ -11,10 +11,10 @@
   <path d="M20 50h-8M129 50h8" stroke="#fff" stroke-width="4"/>
 </g>
 <g transform="translate(178 0)">
-  <path d="M174 22l15 20 21-31 22 31 17-20 8 34H166z" fill="#f4c542" stroke="#8d5c08" stroke-width="3" stroke-linejoin="round"/>
-  <circle cx="210" cy="12" r="5" fill="#fff0a6"/><circle cx="174" cy="21" r="4" fill="#fff0a6"/><circle cx="247" cy="21" r="4" fill="#fff0a6"/>
+  <path d="M174 22l15 20 21-31 22 31 17-20 8 34H166z" fill="#4da3ff" stroke="#8d5c08" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="210" cy="12" r="5" fill="#d8ecff"/><circle cx="174" cy="21" r="4" fill="#d8ecff"/><circle cx="247" cy="21" r="4" fill="#d8ecff"/>
   <text x="0" y="116" font-family="Arial Black,Impact,sans-serif" font-size="102" font-weight="900" letter-spacing="-5" fill="url(#steel)" stroke="#111923" stroke-width="2" paint-order="stroke">IRON</text>
-  <text x="224" y="116" font-family="Arial Black,Impact,sans-serif" font-size="102" font-style="italic" font-weight="900" letter-spacing="-5" fill="url(#red)" stroke="#36000a" stroke-width="2" paint-order="stroke">FIT</text>
+  <text x="224" y="116" font-family="Arial Black,Impact,sans-serif" font-size="102" font-style="italic" font-weight="900" letter-spacing="-5" fill="url(#red)" stroke="#001d40" stroke-width="2" paint-order="stroke">FIT</text>
   <path d="M0 137H470" stroke="url(#red)" stroke-width="5"/>
 </g>
 </svg>
