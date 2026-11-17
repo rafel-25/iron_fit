@@ -21,3 +21,27 @@ input:focus,select:focus,textarea:focus{border-color:#ff2638!important;box-shado
 button,.action{background:#ff2638;box-shadow:0 0 16px rgba(255,38,56,.2)}
 button:hover,.action:hover{background:#d91d2d}
 
+
+
+/* RESPONSIVE LAYOUT — login, profile and admin */
+*{box-sizing:border-box}
+html,body{width:100%;min-width:320px;overflow-x:hidden}
+.auth-card,.panel,.content-card{min-width:0;max-width:100%}
+input,select,textarea{width:100%;min-width:0;font-size:16px}
+.table-wrap{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{min-width:560px}
+.stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.controls,.actions,.admin-actions{flex-wrap:wrap}
+@media(max-width:700px){
+ .top{padding:14px 5%;gap:12px;flex-wrap:wrap}
+ .panel{width:calc(100% - 24px);margin:20px auto;padding:18px}
+ .auth-card{width:calc(100% - 24px);padding:22px 17px;margin:20px auto}
+ .stats{grid-template-columns:1fr;gap:10px;margin:18px 0}
+ .stats article{padding:16px}
+ .stats h2{font-size:21px}
+ .actions{gap:8px}
+ .action{max-width:100%;text-align:center}
+ .controls{align-items:flex-start}
+ .table-title{font-size:16px;margin-top:26px}
+ th,td{padding:11px 9px}
+}
