@@ -18,3 +18,30 @@ footer{text-align:center;padding:28px;border-top:1px solid #252525;color:#777;fo
 
 .exercise-details-link{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:11px 14px;background:#ff2638;color:#fff;font-size:10px;font-weight:900;letter-spacing:1px;border-radius:3px;box-shadow:0 0 16px rgba(255,38,56,.2);transition:background .2s,transform .2s}
 .exercise-details-link:hover{background:#fff;color:#ed2939;transform:translateY(-2px)}
+
+
+/* RESPONSIVE LAYOUT — individual training programs */
+*{box-sizing:border-box}
+html,body{width:100%;min-width:320px;overflow-x:hidden}
+.program-nav{display:flex;align-items:center;justify-content:space-between;gap:18px;min-width:0}
+.program-nav nav{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:10px 16px}
+.program-nav nav a{white-space:nowrap}
+.program-hero{min-width:0}
+.exercise-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.exercise-card{min-width:0}
+@media(max-width:760px){
+ .program-nav{align-items:flex-start;flex-direction:column;padding:14px 5%;gap:12px}
+ .program-nav nav{width:100%;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;gap:14px;padding:5px 0 10px;scrollbar-width:thin}
+ .program-nav nav a{font-size:9px;flex:0 0 auto}
+ .program-hero{grid-template-columns:1fr}
+ .hero-photo{min-height:230px;grid-row:1}
+ .hero-copy{padding:25px 20px}
+ main{width:90%;max-width:100%}
+ .exercise-section{padding:48px 0}
+ .exercise-grid{grid-template-columns:1fr;gap:13px}
+ .exercise-card{padding:18px;gap:12px}
+ .exercise-number{font-size:26px}
+ .exercise-stats{gap:16px;flex-wrap:wrap}
+ .program-cta{padding:38px 16px;margin-bottom:40px}
+ .program-cta h2{font-size:27px}
+}
