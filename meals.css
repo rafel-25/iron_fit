@@ -15,3 +15,29 @@ footer{text-align:center;padding:28px;background:#050811;border-top:1px solid va
 @media(max-width:950px){.meal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.meal-nav{height:auto;min-height:70px;padding:14px 5%;align-items:flex-start;gap:12px;flex-direction:column}nav{gap:16px;flex-wrap:wrap}nav a{font-size:9px}.meal-hero{padding:65px 6% 45px}.meal-library{padding:15px 6% 60px}.meal-grid{grid-template-columns:1fr}.meal-heading h2{font-size:23px}}
 
 .brand{display:flex;align-items:center;line-height:0}.brand img{display:block;width:170px;height:62px;object-fit:contain}@media(max-width:620px){.brand img{width:140px;height:52px}}
+
+
+/* RESPONSIVE LAYOUT — meals */
+*{box-sizing:border-box}
+html,body{width:100%;min-width:320px;overflow-x:hidden}
+.meal-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.meal-card{min-width:0}
+.meal-nav{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.meal-nav nav{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px}
+.meal-nav nav a{white-space:nowrap}
+@media(max-width:950px){.meal-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){
+ .meal-nav{align-items:flex-start;flex-direction:column;padding:14px 5%;gap:12px}
+ .meal-nav nav{width:100%;flex-wrap:nowrap;overflow-x:auto;gap:16px;padding:5px 0 10px;scrollbar-width:thin}
+ .meal-nav nav a{font-size:9px;flex:0 0 auto}
+ .meal-hero{padding:48px 6% 36px}
+ .meal-hero h1{font-size:clamp(34px,10vw,48px)}
+ .meal-library{padding:14px 5% 55px}
+ .meal-grid{grid-template-columns:1fr;gap:15px}
+ .meal-heading{align-items:flex-start;flex-wrap:wrap;gap:8px}
+ .meal-heading h2{font-size:22px}
+ .meal-search input{font-size:16px}
+ .meal-visual{height:205px}
+ .meal-body{padding:17px}
+ footer{padding:22px 5%;line-height:1.8}
+}
