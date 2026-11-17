@@ -24,3 +24,38 @@ footer{border-color:#1b3553;background:#050811}
 
 
 .brand{display:flex;align-items:center;line-height:0}.brand img{display:block;width:170px;height:62px;object-fit:contain}@media(max-width:600px){.brand img{width:140px;height:52px}}
+
+
+/* RESPONSIVE LAYOUT — exercise library */
+*{box-sizing:border-box}
+html,body{width:100%;min-width:320px;overflow-x:hidden}
+.ex-nav{width:100%;min-width:0;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.ex-nav nav{min-width:0;display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:clamp(8px,1.3vw,18px)}
+.ex-nav nav a{white-space:nowrap}
+.exercise-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.exercise-card{min-width:0}
+.exercise-video{width:100%;max-width:100%;aspect-ratio:16/10;object-fit:contain}
+@media(max-width:1050px){
+ .ex-nav{flex-direction:column;align-items:flex-start;padding:16px 5%;gap:14px}
+ .ex-nav nav{width:100%;justify-content:flex-start;gap:10px 16px}
+ .exercise-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+ .ex-nav{padding:14px 5%;min-height:0}
+ .ex-nav nav{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:5px 0 10px;scrollbar-width:thin}
+ .ex-nav nav a{font-size:9px;flex:0 0 auto}
+ main{width:90%;max-width:100%}
+ .ex-hero{padding:42px 0 30px}
+ .ex-hero h1{font-size:clamp(34px,10vw,48px)}
+ .search-wrap input{width:100%;min-width:0}
+ .library{padding:12px 0 55px}
+ .category-tabs{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;padding:4px 0 12px;scrollbar-width:thin}
+ .category-tabs button{flex:0 0 auto;padding:10px 13px}
+ .library-heading{align-items:flex-start;gap:12px;flex-wrap:wrap}
+ .library-heading h2{font-size:21px}
+ .exercise-grid{grid-template-columns:1fr;gap:14px}
+ .exercise-card{padding:17px}
+ .exercise-card h3{font-size:18px}
+ .exercise-video,.video-placeholder{aspect-ratio:16/9}
+ footer{padding:22px 5%;line-height:1.8}
+}
