@@ -22,7 +22,7 @@ function render(){
         <div class="exercise-top"><span class="tag">${escapeHTML(x.category)}</span><span class="difficulty">${escapeHTML(x.difficulty||"Beginner")}</span></div>
         <h3>${escapeHTML(x.title)}</h3>
         <p>${escapeHTML(x.description)}</p>
-        ${video?`<video class="exercise-video" autoplay muted loop playsinline preload="none" poster="${escapeHTML(poster)}" data-video-src="${escapeHTML(video)}" aria-label="${escapeHTML(x.title)} exercise demonstration"></video>`:'<div class="video-placeholder">DEMO VIDEO COMING SOON</div>'}
+        ${video?`<video class="exercise-video" controls playsinline preload="none" poster="${escapeHTML(poster)}"><source src="${escapeHTML(video)}" type="video/mp4">Your browser does not support video.</video>`:'<div class="video-placeholder">DEMO VIDEO COMING SOON</div>'}
         <div class="equipment">EQUIPMENT · ${escapeHTML(x.equipment||"Bodyweight")}</div>
         <details class="exercise-guide"><summary>HOW TO PERFORM</summary>
           ${x.instructions?`<p>${escapeHTML(x.instructions)}</p>`:""}
@@ -34,38 +34,10 @@ function render(){
       </article>`;
   }).join("")||'<div class="empty">No exercises found. Try another search or category.</div>';
 }
-// Load each demo shortly before it enters the viewport. Muted looping
-// video gives a GIF-like experience without the much larger GIF file size.
-function setupLazyExerciseVideos(){
-  const videos=[...document.querySelectorAll("video[data-video-src]")];
-  const start=video=>{
-    if(video.dataset.loaded==="true")return;
-    const src=safeUrl(video.dataset.videoSrc);
-    if(!src)return;
-    video.src=src;
-    video.dataset.loaded="true";
-    video.load();
-    const play=()=>video.play().catch(()=>{});
-    if(video.readyState>=2)play();
-    else video.addEventListener("loadeddata",play,{once:true});
-  };
-  if(!("IntersectionObserver" in window)){
-    videos.forEach(start);
-    return;
-  }
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(!entry.isIntersecting)return;
-      start(entry.target);
-      observer.unobserve(entry.target);
-    });
-  },{rootMargin:"280px 0px",threshold:0.01});
-  videos.forEach(video=>observer.observe(video));
-}
 async function init(){
   const {data,error}=await supabase.from("exercises").select("id,title,category,description,equipment,difficulty,video_url,poster_url,instructions,steps,form_cues,common_mistakes,breathing,target").order("category").order("title");
   if(error){$("#exerciseGrid").innerHTML='<p class="empty error">Could not load the exercise library. Please refresh the page.</p>';return;}
-  exercises=data||[];render();setupLazyExerciseVideos();
+  exercises=data||[];render();
   if(query){
     const match=exercises.find(x=>String(x.title||"").toLowerCase()===query)
       || exercises.find(x=>String(x.title||"").toLowerCase().includes(query));
