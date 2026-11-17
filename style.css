@@ -1649,3 +1649,54 @@ input:focus,select:focus,textarea:focus{border-color:var(--iron-red)!important;b
 .logo{display:flex;align-items:center;text-decoration:none;line-height:0}
 .logo img{display:block;width:190px;height:auto;max-height:66px;object-fit:contain}
 @media(max-width:768px){.logo img{width:145px;max-height:54px}}
+
+
+/* RESPONSIVE POLISH — desktop, tablet and phone */
+html{width:100%;overflow-x:hidden}
+body{width:100%;min-width:320px;overflow-x:hidden}
+img,video,iframe{max-width:100%}
+button,input,select,textarea{max-width:100%;font:inherit}
+input,select,textarea{min-width:0}
+.program-container,.nutrition-container,.dash-grid,.dash-stats,.stats-container{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.program-card,.nutrition-card,.dash-panel,.dash-stat,.bmi-box,.calorie-box,.tracker-box{min-width:0}
+table{max-width:100%}
+@media(max-width:900px){
+ .site-header .navbar{gap:14px;min-height:76px}
+ .site-header .nav-links{gap:12px}
+ .site-header .nav-links a{font-size:12px}
+ .hero{min-height:78vh;padding:110px 6% 55px;background-position:center}
+ .programs,.about,.contact,.nutrition,.bmi-section,.calorie-section{padding:68px 6%}
+ .dash-layout{grid-template-columns:1fr}
+ .dash-sidebar{border-right:0;border-bottom:1px solid rgba(64,116,174,.25)}
+}
+@media(max-width:600px){
+ .site-header{padding:0 4%}
+ .site-header .navbar{min-height:68px;gap:8px}
+ .site-header .logo img{width:128px;max-height:48px}
+ .site-header .nav-actions{gap:6px}
+ .site-header .nav-btn{font-size:9px;padding:9px 10px}
+ .hero{min-height:72vh;padding:105px 6% 45px;background-position:58% center}
+ .hero h1{font-size:clamp(36px,11vw,56px);overflow-wrap:anywhere}
+ .hero p{font-size:14px;line-height:1.7}
+ .main-btn,.contact a{padding:13px 20px}
+ .programs,.about,.contact,.nutrition,.bmi-section,.calorie-section{padding:54px 5%}
+ .programs h2,.about h2,.contact h2{font-size:clamp(24px,7vw,32px);margin-bottom:28px}
+ .section-title{margin-bottom:32px}
+ .program-container,.nutrition-container{grid-template-columns:1fr;gap:16px}
+ .program-card img{height:205px}
+ .card-content{padding:20px}
+ .bmi-box,.calorie-box{padding:20px 16px}
+ .dashboard{padding:18px 3%}
+ .dash-main{padding:14px}
+ .dash-welcome,.welcome-box{padding:20px}
+ .dash-topbar{flex-wrap:wrap;gap:12px}
+ .dash-topbar h1{font-size:22px}
+ .dash-stats,.stats-container{grid-template-columns:1fr}
+ .settings-section{padding:45px 5%}
+ footer{padding:22px 5%;line-height:1.7}
+}
+@media(max-width:380px){
+ .site-header .logo img{width:108px}
+ .site-header .nav-btn{padding:8px;font-size:8px}
+ .bmi-box,.calorie-box{padding:16px 12px}
+}
